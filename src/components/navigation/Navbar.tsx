@@ -150,11 +150,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Animated Background */}
-      <div className="fixed top-0 left-0 w-full h-32 bg-gradient-to-r from-[#0066cc] via-purple-600 to-[#d53020] opacity-10 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-      </div>
-
       <nav
         className={`w-full relative z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-md bg-white/95 shadow-2xl' : ''}`}
       >
@@ -176,7 +171,9 @@ export default function Navbar() {
                       key={index}
                       className={`p-1.5 rounded-full bg-gradient-to-r ${gradient} hover:scale-110 transform transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl`}
                     >
-                      <Icon className="w-3 h-3 text-white" />
+                      <Link href={href}>
+                        <Icon className="w-3 h-3 text-white" />
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -323,8 +320,8 @@ export default function Navbar() {
 
         {/* Enhanced Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute w-full bg-white/95 backdrop-blur-lg border-b border-gray-200/50 shadow-2xl animate-in slide-in-from-top duration-300">
-            <div className="px-4 pt-4 pb-6 space-y-2 max-h-96 overflow-y-auto">
+          <div className="lg:hidden absolute w-full bg-white/95 backdrop-blur-lg border-b-4 border-[#0066cc] shadow-2xl animate-in slide-in-from-top duration-300">
+            <div className="px-4 pt-4 pb-6 space-y-2 max-h-full overflow-y-auto">
               {mainNavItems.map(({ name, icon: Icon, hot, dropdown }, index) => (
                 <div key={index} className="group">
                   <button

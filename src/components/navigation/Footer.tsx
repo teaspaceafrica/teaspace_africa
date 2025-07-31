@@ -12,7 +12,6 @@ import {
   FaFilm,
   FaTrophy,
   FaTshirt,
-  FaCrown,
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
@@ -148,9 +147,9 @@ export default function Footer() {
         {/* Main Footer Links */}
         <div className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-8">
               {/* Brand Section */}
-              <div className="lg:col-span-2">
+              <div className="col-span-3 lg:col-span-2">
                 <div className="mb-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <div>
@@ -198,7 +197,7 @@ export default function Footer() {
                       <li key={linkIndex}>
                         <Link
                           href={link.href}
-                          className="text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-[#0066cc] hover:to-[#d53020] hover:bg-clip-text hover:text-transparent transition-all duration-300 block py-1"
+                          className="text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-[#0066cc] hover:to-[#d53020] hover:bg-clip-text transition-all duration-300 block py-1"
                         >
                           {link.name}
                         </Link>
