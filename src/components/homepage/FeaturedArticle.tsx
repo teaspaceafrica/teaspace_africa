@@ -1,23 +1,16 @@
 import React from 'react'
 import Image from 'next/image'
-import { FaClock, FaCrown, FaEye, FaPlay } from 'react-icons/fa'
-
-interface Article {
-  image: string
-  title: string
-  isExclusive?: boolean
-  category: string
-  categoryIcon: React.ComponentType<{ className?: string }>
-  author: string
-  readTime: string | number
-  views: number | string
-}
+import { FaClock, FaPlay } from 'react-icons/fa'
+import { Articles } from '@/types/types'
 
 interface FeaturedArticleProps {
-  article: Article
+  article: Articles
 }
 
 export default function FeaturedArticle({ article }: FeaturedArticleProps) {
+  if (!article) {
+    return null
+  }
   return (
     <div className="relative group cursor-pointer mb-6">
       <div className="relative h-72 sm:h-80 md:h-[300px] rounded-2xl overflow-hidden shadow-xl bg-white border-2 border-[#d53020]/20 hover:border-[#d53020] transition-all duration-500">
@@ -25,7 +18,11 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
         <Image
           width={800}
           height={600}
-          src={article.image}
+          src={
+            typeof article.image === 'object' && article.image !== null
+              ? article.image.url
+              : '/placeholder.jpg'
+          }
           alt={article.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
@@ -38,8 +35,16 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
           {/* Category Badge */}
           <div className="flex items-center flex-wrap gap-2 mb-4">
             <div className="flex items-center space-x-2 bg-[#0066cc]/90 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20 shadow-lg">
-              <article.categoryIcon className="w-4 h-4 text-white" />
-              <span className="text-white font-semibold text-sm">{article.category}</span>
+              <span className="text-white font-semibold text-sm">
+                {' '}
+                {typeof article.category === 'object' &&
+                article.category !== null &&
+                'slug' in article.category
+                  ? article.category.slug
+                  : typeof article.category === 'string' || typeof article.category === 'number'
+                    ? article.category
+                    : 'music'}
+              </span>
             </div>
           </div>
 
@@ -51,7 +56,14 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
           {/* Meta Info */}
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center space-x-4 text-white/80 text-sm">
-              <span className="hidden sm:inline font-medium">{article.author}</span>
+              <span className="hidden sm:inline font-medium">
+                {' '}
+                {typeof article.author === 'number'
+                  ? article.author
+                  : article.author && typeof article.author === 'object' && 'name' in article.author
+                    ? article.author.name
+                    : ''}
+              </span>
               <div className="flex items-center space-x-1">
                 <FaClock className="w-4 h-4" />
                 <span>{article.readTime}</span>

@@ -3,9 +3,10 @@ import { FaArrowRight } from 'react-icons/fa'
 
 interface CategoryHeaderProps {
   title: string
+  icon?: string // Optional icon prop to allow for dynamic icons
 }
 
-export default function CategoryHeader({ title }: CategoryHeaderProps) {
+export default function CategoryHeader({ title, icon }: CategoryHeaderProps) {
   return (
     <div className="flex items-center justify-between mb-6">
       <div className="flex items-center flex-1">

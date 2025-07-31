@@ -9,43 +9,20 @@ import {
   FaFacebookF,
   FaYoutube,
   FaStar,
-  FaFire,
   FaMusic,
   FaFilm,
-  FaTrophy,
   FaTshirt,
   FaComments,
-  FaNewspaper,
-  FaHeart,
-  FaGamepad,
-  FaTv,
-  FaCalendarAlt,
-  FaGlobe,
-  FaChevronDown,
-  FaCrown,
-  FaCamera,
-  FaMicrophone,
-  FaTheaterMasks,
 } from 'react-icons/fa'
-import { HiSparkles } from 'react-icons/hi'
 import { IoTrendingUp } from 'react-icons/io5'
 import Link from 'next/link'
 import Image from 'next/image'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-  DropdownMenuLabel,
-} from '@/components/ui/dropdown-menu'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeItem, setActiveItem] = useState(0)
-  const [mobileDropdowns, setMobileDropdowns] = useState<Record<number, boolean>>({})
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
@@ -59,85 +36,36 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const toggleMobileDropdown = (index: number) => {
-    setMobileDropdowns((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }))
-  }
-
   const mainNavItems = [
+    {
+      name: 'Music',
+      icon: FaMusic,
+      href: '/music',
+    },
     {
       name: 'Celebrity',
       icon: FaStar,
-      hot: true,
-      dropdown: [
-        { name: 'Celebrity News', icon: FaNewspaper, href: '/celebrity/news' },
-        { name: 'Interviews', icon: FaMicrophone, href: '/celebrity/interviews', hot: true },
-        { name: 'Red Carpet', icon: FaCamera, href: '/celebrity/red-carpet' },
-        { name: 'Celebrity Style', icon: FaTshirt, href: '/celebrity/style' },
-        { name: 'Relationships', icon: FaHeart, href: '/celebrity/relationships', hot: true },
-      ],
+      href: '/celebrity',
     },
     {
-      name: 'Entertainment',
-      icon: FaTheaterMasks,
-      hot: false,
-      dropdown: [
-        { name: 'Movies', icon: FaFilm, href: '/entertainment/movies', hot: true },
-        { name: 'TV Shows', icon: FaTv, href: '/entertainment/tv' },
-        { name: 'Music', icon: FaMusic, href: '/entertainment/music' },
-        { name: 'Gaming', icon: FaGamepad, href: '/entertainment/gaming' },
-        { name: 'Streaming', icon: FaYoutube, href: '/entertainment/streaming', hot: true },
-      ],
+      name: 'Movies',
+      icon: FaFilm,
+      href: '/movies',
     },
     {
       name: 'Fashion',
       icon: FaTshirt,
-      hot: true,
-      dropdown: [
-        { name: 'Latest Trends', icon: IoTrendingUp, href: '/fashion/trends', hot: true },
-        { name: 'Designer Spotlight', icon: FaCrown, href: '/fashion/designers' },
-        { name: 'Street Style', icon: FaCamera, href: '/fashion/street-style' },
-        { name: 'Beauty', icon: HiSparkles, href: '/fashion/beauty' },
-        { name: 'Fashion Week', icon: FaCalendarAlt, href: '/fashion/fashion-week', hot: true },
-      ],
-    },
-    {
-      name: 'Awards',
-      icon: FaTrophy,
-      hot: false,
-      dropdown: [
-        { name: 'Oscars', icon: FaTrophy, href: '/awards/oscars' },
-        { name: 'Golden Globes', icon: FaStar, href: '/awards/golden-globes' },
-        { name: 'Grammys', icon: FaMusic, href: '/awards/grammys' },
-        { name: 'Emmys', icon: FaTv, href: '/awards/emmys' },
-        { name: 'Award Season', icon: FaCalendarAlt, href: '/awards/season', hot: true },
-      ],
+      href: '/fashion',
     },
     {
       name: 'Gossip',
       icon: FaComments,
-      hot: true,
-      dropdown: [
-        { name: 'Hot Takes', icon: FaFire, href: '/gossip/hot-takes', hot: true },
-        { name: 'Drama Alert', icon: FaComments, href: '/gossip/drama', hot: true },
-        { name: 'Breakups & Makeups', icon: FaHeart, href: '/gossip/relationships' },
-        { name: 'Social Media Tea', icon: FaInstagram, href: '/gossip/social-media' },
-        { name: 'Exclusive Scoops', icon: FaCrown, href: '/gossip/exclusive', hot: true },
-      ],
+      href: '/gossip',
     },
     {
       name: 'Trending',
       icon: IoTrendingUp,
-      hot: true,
-      dropdown: [
-        { name: 'Viral Content', icon: FaFire, href: '/trending/viral', hot: true },
-        { name: 'Social Buzz', icon: FaTwitter, href: '/trending/social' },
-        { name: 'Memes & Fun', icon: HiSparkles, href: '/trending/memes' },
-        { name: 'Global Trends', icon: FaGlobe, href: '/trending/global' },
-        { name: "What's Hot", icon: IoTrendingUp, href: '/trending/hot', hot: true },
-      ],
+      href: '/trending',
     },
   ]
 
@@ -217,11 +145,10 @@ export default function Navbar() {
 
               {/* Enhanced Desktop Navigation with Shadcn Dropdowns */}
               <div className="hidden lg:flex items-center space-x-1">
-                {mainNavItems.map(({ name, icon: Icon, hot, dropdown }, index) => (
-                  <DropdownMenu key={index}>
-                    <DropdownMenuTrigger asChild>
-                      <button
-                        className={`
+                {mainNavItems.map(({ name, icon: Icon, href }, index) => (
+                  <Link href={href} key={index} className="relative group">
+                    <div
+                      className={`
                           flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 relative overflow-hidden group
                           ${
                             activeItem === index
@@ -229,43 +156,18 @@ export default function Navbar() {
                               : 'text-gray-700 hover:text-white hover:bg-[#0066cc]'
                           }
                         `}
-                        onMouseEnter={() => setActiveItem(index)}
-                      >
-                        <Icon className="w-4 h-4" />
-                        <span>{name}</span>
-                        {hot && <FaFire className="w-3 h-3 text-orange-400 animate-pulse" />}
-                        <FaChevronDown className="w-3 h-3" />
-
-                        {/* Shimmer effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                      </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      className="w-64 bg-white/95 backdrop-blur-lg border border-gray-200/50 shadow-2xl rounded-2xl p-2"
-                      align="start"
+                      onMouseEnter={() => setActiveItem(index)}
                     >
-                      <DropdownMenuLabel className="text-gray-600 font-semibold px-3 py-2">
-                        {name}
-                      </DropdownMenuLabel>
-                      <DropdownMenuSeparator className="bg-gray-200/50" />
-                      {dropdown?.map((item, itemIndex) => (
-                        <DropdownMenuItem key={itemIndex} asChild>
-                          <Link
-                            href={item.href}
-                            className="flex items-center justify-between w-full p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#0066cc] hover:to-[#d53020] text-gray-700 hover:text-white transition-all duration-300 cursor-pointer group"
-                          >
-                            <div className="flex items-center space-x-3">
-                              <item.icon className="w-4 h-4" />
-                              <span className="font-medium">{item.name}</span>
-                            </div>
-                            {item.hot && (
-                              <FaFire className="w-3 h-3 text-orange-400 group-hover:text-orange-300" />
-                            )}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                      <Icon className="w-5 h-5" />
+                      <span>{name}</span>
+                    </div>
+                    {name === 'Trending' && (
+                      <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full animate-pulse">
+                        Hot
+                      </span>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                  </Link>
                 ))}
               </div>
 
@@ -304,7 +206,7 @@ export default function Navbar() {
                 <div className="lg:hidden">
                   <button
                     onClick={toggleMenu}
-                    className="p-3 rounded-full bg-gradient-to-r from-[#0066cc] to-[#d53020] text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
+                    className="p-3 rounded-full bg-gradient-to-r from-[#0066cc] to-[#d53020] text-white shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
                   >
                     {isMenuOpen ? (
                       <FaTimes className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
@@ -322,40 +224,20 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden absolute w-full bg-white/95 backdrop-blur-lg border-b-4 border-[#0066cc] shadow-2xl animate-in slide-in-from-top duration-300">
             <div className="px-4 pt-4 pb-6 space-y-2 max-h-full overflow-y-auto">
-              {mainNavItems.map(({ name, icon: Icon, hot, dropdown }, index) => (
+              {mainNavItems.map(({ name, icon: Icon }, index) => (
                 <div key={index} className="group">
-                  <button
-                    onClick={() => toggleMobileDropdown(index)}
+                  <Link
+                    href={`/${name.toLowerCase()}`}
+                    key={index}
                     className="w-full flex items-center justify-between p-4 rounded-xl bg-gray-50 hover:bg-gradient-to-r hover:from-[#0066cc] hover:to-[#d53020] text-gray-700 hover:text-white transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-lg"
                   >
                     <div className="flex items-center space-x-3">
                       <Icon className="w-5 h-5" />
                       <span className="font-medium">{name}</span>
-                      {hot && <FaFire className="w-4 h-4 text-orange-400" />}
                     </div>
-                    <FaChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${mobileDropdowns[index] ? 'rotate-180' : ''}`}
-                    />
-                  </button>
 
-                  {/* Mobile Dropdown */}
-                  {mobileDropdowns[index] && (
-                    <div className="mt-2 ml-4 space-y-1 animate-in slide-in-from-top duration-200">
-                      {dropdown?.map((item, itemIndex) => (
-                        <Link
-                          key={itemIndex}
-                          href={item.href}
-                          className="flex items-center justify-between p-3 rounded-lg bg-white/50 hover:bg-gradient-to-r hover:from-[#0066cc]/80 hover:to-[#d53020]/80 text-gray-600 hover:text-white transition-all duration-300"
-                        >
-                          <div className="flex items-center space-x-3">
-                            <item.icon className="w-4 h-4" />
-                            <span className="text-sm">{item.name}</span>
-                          </div>
-                          {item.hot && <FaFire className="w-3 h-3 text-orange-400" />}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                  </Link>
                 </div>
               ))}
 

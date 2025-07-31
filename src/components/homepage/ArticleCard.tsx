@@ -1,20 +1,10 @@
 import Image from 'next/image'
-import { FaClock, FaEye } from 'react-icons/fa'
+import { FaClock } from 'react-icons/fa'
 import { IoTrendingUp } from 'react-icons/io5'
-
-interface Article {
-  image: string
-  title: string
-  isHot?: boolean
-  category: string
-  categoryIcon: React.ComponentType<{ className?: string }>
-  readTime: string | number
-  views: string | number
-  publishedAt: string
-}
+import { Articles } from '@/types/types'
 
 interface ArticleCardProps {
-  article: Article
+  article: Articles
 }
 
 export default function ArticleCard({ article }: ArticleCardProps) {
@@ -26,13 +16,17 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           <Image
             width={400}
             height={300}
-            src={article.image}
+            src={
+              typeof article.image === 'object' && article.image !== null
+                ? article.image.url
+                : '/placeholder.jpg'
+            }
             alt={article.title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
 
           {/* Hot Badge */}
-          {article.isHot && (
+          {article.subcategory && (
             <div className="absolute top-3 right-3">
               <div className="bg-gradient-to-r from-[#d53020] to-red-600 rounded-full p-2 shadow-lg animate-pulse">
                 <IoTrendingUp className="w-4 h-4 text-white" />
@@ -48,8 +42,15 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         <div className="p-4 sm:p-5 flex flex-col flex-1">
           {/* Category */}
           <div className="flex items-center space-x-2 mb-3">
-            <article.categoryIcon className="w-4 h-4 text-[#0066cc]" />
-            <span className="text-[#0066cc] text-sm font-semibold">{article.category}</span>
+            <span className="text-[#0066cc] text-sm font-semibold">
+              {typeof article.category === 'object' &&
+              article.category !== null &&
+              'slug' in article.category
+                ? article.category.slug
+                : typeof article.category === 'string' || typeof article.category === 'number'
+                  ? article.category
+                  : 'music'}
+            </span>
           </div>
 
           {/* Title */}

@@ -3,42 +3,9 @@ import Image from 'next/image'
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import Link from 'next/link'
+import { Articles } from '@/types/types'
 
-// Mock trending news data
-const trendingNews = [
-  {
-    id: 1,
-    title: "Exclusive: Behind the Scenes of the Year's Biggest Blockbuster",
-    image:
-      'https://images.unsplash.com/photo-1489599663311-b2f8b0a8f85c?w=800&h=400&fit=crop&crop=faces',
-  },
-  {
-    id: 2,
-    title: 'Grammy Winner Announces Surprise Album Drop This Weekend',
-    image:
-      'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=400&fit=crop&crop=faces',
-  },
-  {
-    id: 3,
-    title: 'Celebrity Power Couple Spotted on Secret Romantic Getaway',
-    image:
-      'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=400&fit=crop&crop=faces',
-  },
-  {
-    id: 4,
-    title: "Netflix's New Series Breaks Streaming Records in First Week",
-    image:
-      'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=800&h=400&fit=crop&crop=faces',
-  },
-  {
-    id: 5,
-    title: 'Fashion Week 2024: The Most Jaw-Dropping Looks That Stole the Show',
-    image:
-      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=400&fit=crop&crop=faces',
-  },
-]
-
-export default function TrendingHero() {
+export default function TrendingHero({ posts }: { posts: Articles[] }) {
   return (
     <section className="bg-[#0066cc] w-full">
       <Carousel
@@ -50,14 +17,18 @@ export default function TrendingHero() {
         ]}
       >
         <CarouselContent className="-ml-1">
-          {trendingNews.map((news) => (
+          {posts.map((news) => (
             <CarouselItem key={news.id} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
               <div className="relative h-32 md:w-full md:h-36 rounded-2xl overflow-hidden border-2 border-white/20 backdrop-blur-sm">
                 {/* Image */}
                 <Image
                   width={400}
                   height={300}
-                  src={news.image}
+                  src={
+                    typeof news.image === 'object' && news.image !== null
+                      ? news.image.url
+                      : '/placeholder.jpg'
+                  }
                   alt={news.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 object-center"
                 />

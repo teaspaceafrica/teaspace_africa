@@ -1,16 +1,16 @@
 import React from 'react'
-import TrendingHero from '@/components/homepage/TrendingHero'
+import TrendingWrapper from '@/components/Wrappers/TrendingWrapper'
 import Hero from '@/components/homepage/Hero'
-import GroupOne from '@/components/homepage/GroupOne'
+import GroupOneWrapper from '@/components/Wrappers/GroupOneWrapper'
 import GroupTwo from '@/components/homepage/GroupTwo'
 import CelebBio from '@/components/homepage/CelebBio'
 
 export default function page() {
   return (
     <>
-      <TrendingHero />
+      <TrendingWrapper />
       <Hero />
-      <GroupOne />
+      <GroupOneWrapper />
       <GroupTwo />
       <CelebBio />
     </>
