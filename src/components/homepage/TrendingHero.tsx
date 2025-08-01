@@ -42,7 +42,18 @@ export default function TrendingHero({ posts }: { posts: Articles[] }) {
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-[#0066cc]/50 backdrop-blur-xs rounded-b-2xl transition-colors duration-300">
                   {/* Title */}
-                  <Link href="#">
+                  <Link
+                    href={`/${
+                      typeof news.category === 'object' &&
+                      news.category !== null &&
+                      'slug' in news.category
+                        ? (news.category as any).slug
+                        : typeof news.category === 'string' || typeof news.category === 'number'
+                          ? news.category
+                          : 'entertainment'
+                    }/${news.slug}`}
+                    className="group"
+                  >
                     <h3 className="text-white font-bold text-sm md:text-base leading-tight line-clamp-2 group-hover:text-orange-200 transition-colors duration-300">
                       {news.title}
                     </h3>
