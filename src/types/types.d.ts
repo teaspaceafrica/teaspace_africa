@@ -6,8 +6,8 @@ export interface Media {
 
 export interface Category {
   id: number
-  name: string
-  slug: string
+  name: string | null
+  slug: string | null
 }
 
 export interface User {
@@ -28,6 +28,7 @@ export interface Articles {
   publishedAt: string
   excerpt?: string | null
   image?: string | { url: string } | null
+  video?: string | null
   category: number | { name: string } | { slug: string }
   subcategory?: string | null
   tags?: { tag: string; id?: string | null | undefined }[] | null | undefined
