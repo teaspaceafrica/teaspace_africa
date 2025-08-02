@@ -1,73 +1,25 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaStar, FaMusic, FaTv, FaTshirt } from 'react-icons/fa'
-import { IoTrendingUp } from 'react-icons/io5'
 import CategoryHeader from './CategoryHeader'
 import FeaturedArticle from './FeaturedArticle'
 import ArticleCard from './ArticleCard'
+import { Articles } from '@/types/types'
 
-const news = [
-  {
-    id: 1,
-    title: "Taylor Swift's Secret Studio Sessions: The Making of Her Most Personal Album Yet",
-    excerpt:
-      "Exclusive behind-the-scenes access to the pop icon's latest creative process reveals unexpected collaborations and emotional depth.",
-    image:
-      'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop&crop=faces',
-    category: 'Music',
-    categoryIcon: FaMusic,
-    author: 'Sarah Johnson',
-    readTime: '8 min read',
-    views: '12.3K',
-    publishedAt: '2 hours ago',
-    isExclusive: true,
-    tags: ['Exclusive', 'Music', 'Celebrity'],
-  },
-  {
-    id: 2,
-    title: "Hollywood's Power Couple Announces Surprise Engagement",
-    image:
-      'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&h=250&fit=crop&crop=faces',
-    category: 'Music',
-    categoryIcon: FaStar,
-    readTime: '5 min',
-    isHot: true,
-    author: 'Mike Davis',
-    views: '8.7K',
-    publishedAt: '4 hours ago',
-  },
-  {
-    id: 3,
-    title: 'Netflix Drops First Trailer for Most Anticipated Series',
-    image:
-      'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400&h=250&fit=crop&crop=faces',
-    category: 'Music',
-    categoryIcon: FaTv,
-    readTime: '3 min',
-    isHot: false,
-    author: 'Lisa Chen',
-    views: '5.2K',
-    publishedAt: '6 hours ago',
-  },
-  {
-    id: 4,
-    title: "Fashion Week 2024: The Revolutionary Looks Everyone's Talking About",
-    image:
-      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&h=250&fit=crop&crop=faces',
-    category: 'Fashion',
-    categoryIcon: FaTshirt,
-    readTime: '6 min',
-    isHot: true,
-    author: 'Emma Wilson',
-    views: '9.1K',
-    publishedAt: '3 hours ago',
-  },
-]
+export default function GroupTwo({ posts }: { posts: Articles[] }) {
+  const musicArticles = posts.filter((post) => {
+    if (typeof post.category === 'object' && 'name' in post.category) {
+      return post.category.name === 'Music'
+    }
+    return false
+  })
 
-export default function GroupTwo() {
-  const musicArticles = news.filter((article) => article.category === 'Music')
-  const celebrityArticles = news.filter((article) => article.category === 'Celebrity')
+  const celebrityArticles = posts.filter((post) => {
+    if (typeof post.category === 'object' && 'name' in post.category) {
+      return post.category.name === 'Celebrity'
+    }
+    return false
+  })
 
   return (
     <section className="grouptwo relative overflow-hidden min-h-screen py-8 sm:py-12 border-t border-[#d53020]/70">
@@ -97,16 +49,26 @@ export default function GroupTwo() {
                         <Image
                           width={300}
                           height={200}
-                          src={article.image}
+                          src={
+                            typeof article.image === 'object' && article.image !== null
+                              ? article.image.url
+                              : '/placeholder.jpg'
+                          }
                           alt={article.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div className="p-3">
                         <div className="flex items-center space-x-1 mb-2">
-                          <article.categoryIcon className="w-3 h-3 text-[#0066cc]" />
                           <span className="text-[#0066cc] text-xs font-medium">
-                            {article.category}
+                            {typeof article.category === 'object' &&
+                            article.category !== null &&
+                            'slug' in article.category
+                              ? article.category.slug
+                              : typeof article.category === 'string' ||
+                                  typeof article.category === 'number'
+                                ? article.category
+                                : 'music'}
                           </span>
                         </div>
                         <h4 className="text-gray-800 text-sm font-semibold leading-tight line-clamp-2 group-hover:text-[#0066cc] transition-colors">
@@ -125,40 +87,65 @@ export default function GroupTwo() {
             <CategoryHeader title="Celebrity" />
 
             <div className="banner">
-              <FeaturedArticle article={news[1]} />
+              <FeaturedArticle article={celebrityArticles[1]} />
             </div>
 
             <div className="otherarticles">
               <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                {musicArticles.slice(1, 3).map((article) => (
+                {celebrityArticles.slice(1, 3).map((article) => (
                   <ArticleCard key={article.id} article={article} />
                 ))}
               </div>
 
               {/* Additional smaller cards */}
               <div className="mt-6 grid grid-cols-2 gap-3">
-                {musicArticles.slice(0, 2).map((article) => (
+                {celebrityArticles.slice(0, 2).map((article) => (
                   <div key={article.id} className="group cursor-pointer">
                     <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-xl bg-white transition-all duration-300 border border-[#d53020]/20 hover:border-[#d53020] hover:-translate-y-0.5">
                       <div className="relative h-24 sm:h-32 overflow-hidden">
                         <Image
                           width={300}
                           height={200}
-                          src={article.image}
+                          src={
+                            typeof article.image === 'object' && article.image !== null
+                              ? article.image.url
+                              : '/placeholder.jpg'
+                          }
                           alt={article.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div className="p-3">
                         <div className="flex items-center space-x-1 mb-2">
-                          <article.categoryIcon className="w-3 h-3 text-[#0066cc]" />
                           <span className="text-[#0066cc] text-xs font-medium">
-                            {article.category}
+                            {typeof article.category === 'object' &&
+                            article.category !== null &&
+                            'slug' in article.category
+                              ? article.category.slug
+                              : typeof article.category === 'string' ||
+                                  typeof article.category === 'number'
+                                ? article.category
+                                : 'music'}
                           </span>
                         </div>
-                        <h4 className="text-gray-800 text-sm font-semibold leading-tight line-clamp-2 group-hover:text-[#0066cc] transition-colors">
-                          {article.title}
-                        </h4>
+                        .
+                        <Link
+                          href={`/${
+                            typeof article.category === 'object' &&
+                            article.category !== null &&
+                            'slug' in article.category
+                              ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                (article.category as any).slug
+                              : typeof article.category === 'string' ||
+                                  typeof article.category === 'number'
+                                ? article.category
+                                : 'entertainment'
+                          }/${article.slug}`}
+                        >
+                          <h4 className="text-gray-800 text-sm font-semibold leading-tight line-clamp-2 group-hover:text-[#0066cc] transition-colors">
+                            {article.title}
+                          </h4>
+                        </Link>
                       </div>
                     </div>
                   </div>

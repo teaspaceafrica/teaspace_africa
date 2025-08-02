@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Articles } from '@/types/types'
 
 export default function TrendingHero({ posts }: { posts: Articles[] }) {
+  const trending = posts.filter((post) => post.subcategory === 'isTrending')
   return (
     <section className="bg-[#0066cc] w-full">
       <Carousel
@@ -17,7 +18,7 @@ export default function TrendingHero({ posts }: { posts: Articles[] }) {
         ]}
       >
         <CarouselContent className="-ml-1">
-          {posts.map((news) => (
+          {trending.slice(0, 9).map((news) => (
             <CarouselItem key={news.id} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
               <div className="relative h-32 md:w-full md:h-36 rounded-2xl overflow-hidden border-2 border-white/20 backdrop-blur-sm">
                 {/* Image */}
@@ -47,7 +48,8 @@ export default function TrendingHero({ posts }: { posts: Articles[] }) {
                       typeof news.category === 'object' &&
                       news.category !== null &&
                       'slug' in news.category
-                        ? (news.category as any).slug
+                        ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          (news.category as any).slug
                         : typeof news.category === 'string' || typeof news.category === 'number'
                           ? news.category
                           : 'entertainment'

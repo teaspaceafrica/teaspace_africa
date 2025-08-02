@@ -23,7 +23,7 @@ export default async function page(props: { params: Params; searchParams: Search
           <NoArticlesFound categorySlug={categorySlug} />
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
               {posts.map((post) => (
                 <Card key={post.id} article={post} />
               ))}

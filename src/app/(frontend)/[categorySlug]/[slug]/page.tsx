@@ -9,12 +9,8 @@ import Link from 'next/link'
 import {
   FaStar,
   FaCrown,
-  FaEye,
   FaClock,
   FaNewspaper,
-  FaShare,
-  FaHeart,
-  FaBookmark,
   FaCalendarAlt,
   FaUser,
   FaArrowLeft,
@@ -244,21 +240,6 @@ export default async function BlogPostPage({
                       <span className="n capitalize">{timeAgo}</span>
                     </div>
                   </div>
-
-                  <div className="flex items-center space-x-3">
-                    <button className="flex items-center space-x-2 px-3 py-2 bg-gray-50 text-gray-600 rounded-full hover:bg-red-50 hover:text-red-600 transition-all duration-200 border border-gray-200">
-                      <FaHeart className="w-4 h-4" />
-                      <span className="text-sm font-medium">Like</span>
-                    </button>
-
-                    <button className="p-2 rounded-full bg-gray-50 text-gray-600 border border-gray-200 hover:bg-blue-50 hover:text-[#0066cc] transition-all duration-200">
-                      <FaBookmark className="w-4 h-4" />
-                    </button>
-
-                    <button className="p-2 rounded-full bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-100 transition-all duration-200">
-                      <FaShare className="w-4 h-4" />
-                    </button>
-                  </div>
                 </div>
               </div>
 
@@ -373,7 +354,7 @@ export default async function BlogPostPage({
                           <span className="text-white font-bold text-sm">{index + 1}</span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-sm text-gray-900 group-hover:text-[#0066cc] transition-colors line-clamp-2 mb-2">
+                          <h4 className="font-semibold text-sm text-gray-900 group-hover:text-[#0066cc] transition-colors line-clamp-3 mb-2">
                             {latestPost.title}
                           </h4>
                           <div className="flex items-center justify-between text-xs text-gray-500">
@@ -384,9 +365,8 @@ export default async function BlogPostPage({
                                 day: 'numeric',
                               })}
                             </span>
-                            <div className="flex items-center space-x-1">
-                              <FaEye className="w-3 h-3" />
-                              <span>2.1K</span>
+                            <div className="flex items-center space-x-1 bg-[#d53020]/10 rounded-full px-2 py-1">
+                              <span>{latestPost.category.name}</span>
                             </div>
                           </div>
                         </div>

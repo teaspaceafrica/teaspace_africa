@@ -4,6 +4,7 @@ import CategoryHeader from './CategoryHeader'
 import FeaturedArticle from './FeaturedArticle'
 import ArticleCard from './ArticleCard'
 import { Articles } from '@/types/types'
+import Link from 'next/link'
 
 export default function GroupOne({ posts }: { posts: Articles[] }) {
   const musicArticles = posts.filter((post) => {
@@ -70,9 +71,23 @@ export default function GroupOne({ posts }: { posts: Articles[] }) {
                                 : 'music'}
                           </span>
                         </div>
-                        <h4 className="text-gray-800 text-sm font-semibold leading-tight line-clamp-2 group-hover:text-[#0066cc] transition-colors">
-                          {article.title}
-                        </h4>
+                        <Link
+                          href={`/${
+                            typeof article.category === 'object' &&
+                            article.category !== null &&
+                            'slug' in article.category
+                              ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                (article.category as any).slug
+                              : typeof article.category === 'string' ||
+                                  typeof article.category === 'number'
+                                ? article.category
+                                : 'entertainment'
+                          }/${article.slug}`}
+                        >
+                          <h4 className="text-gray-800 text-sm font-semibold leading-tight line-clamp-2 group-hover:text-[#0066cc] transition-colors">
+                            {article.title}
+                          </h4>
+                        </Link>
                       </div>
                     </div>
                   </div>

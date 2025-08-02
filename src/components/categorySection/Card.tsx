@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { FaClock } from 'react-icons/fa'
 import { Articles } from '@/types/types'
+import Link from 'next/link'
 
 interface ArticleCardProps {
   article: Articles
@@ -42,9 +43,22 @@ export default function Card({ article }: ArticleCardProps) {
         <div className="p-5 md:p-6 bg-white flex flex-col justify-between flex-grow">
           {/* Title */}
           <div className="mb-4">
-            <h3 className="text-gray-900 text-lg md:text-xl font-bold leading-tight mb-3 line-clamp-2 group-hover:text-[#0066cc] transition-colors duration-300">
-              {article.title}
-            </h3>
+            <Link
+              href={`/${
+                typeof article.category === 'object' &&
+                article.category !== null &&
+                'slug' in article.category
+                  ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    (article.category as any).slug
+                  : typeof article.category === 'string' || typeof article.category === 'number'
+                    ? article.category
+                    : 'entertainment'
+              }/${article.slug}`}
+            >
+              <h3 className="text-gray-900 text-lg md:text-xl font-bold leading-tight mb-3 line-clamp-2 group-hover:text-[#0066cc] transition-colors duration-300">
+                {article.title}
+              </h3>
+            </Link>
 
             {/* Description */}
             <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">

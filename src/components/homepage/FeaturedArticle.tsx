@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { FaClock, FaPlay } from 'react-icons/fa'
 import { Articles } from '@/types/types'
+import Link from 'next/link'
 
 interface FeaturedArticleProps {
   article: Articles
@@ -49,9 +50,22 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
           </div>
 
           {/* Title */}
-          <h1 className="text-base md:text-xl font-bold text-white mb-3 leading-tight line-clamp-3 group-hover:text-orange-200 transition-colors duration-300">
-            {article.title}
-          </h1>
+          <Link
+            href={`/${
+              typeof article.category === 'object' &&
+              article.category !== null &&
+              'slug' in article.category
+                ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (article.category as any).slug
+                : typeof article.category === 'string' || typeof article.category === 'number'
+                  ? article.category
+                  : 'entertainment'
+            }/${article.slug}`}
+          >
+            <h1 className="text-base md:text-xl font-bold text-white mb-3 leading-tight line-clamp-3 group-hover:text-orange-200 transition-colors duration-300">
+              {article.title}
+            </h1>
+          </Link>
 
           {/* Meta Info */}
           <div className="flex items-center justify-between flex-wrap gap-3">

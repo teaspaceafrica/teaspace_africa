@@ -234,7 +234,10 @@ export default function Footer() {
 
             {/* Additional Links */}
             <div className="flex flex-wrap justify-center items-center space-x-6 mb-6 text-sm">
-              <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+              <Link
+                href="/about-teaspace"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 About Us
               </Link>
               <Link href="/privacy" className="text-gray-300 hover:text-white transition-colors">

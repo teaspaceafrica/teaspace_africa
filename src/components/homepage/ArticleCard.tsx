@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { FaClock } from 'react-icons/fa'
 import { IoTrendingUp } from 'react-icons/io5'
 import { Articles } from '@/types/types'
+import Link from 'next/link'
 
 interface ArticleCardProps {
   article: Articles
@@ -54,9 +55,22 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           </div>
 
           {/* Title */}
-          <h3 className="text-gray-800 text-sm md:text-base font-bold leading-tight group-hover:text-[#0066cc] transition-colors duration-300 mb-3 flex-1 line-clamp-2">
-            {article.title}
-          </h3>
+          <Link
+            href={`/${
+              typeof article.category === 'object' &&
+              article.category !== null &&
+              'slug' in article.category
+                ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (article.category as any).slug
+                : typeof article.category === 'string' || typeof article.category === 'number'
+                  ? article.category
+                  : 'entertainment'
+            }/${article.slug}`}
+          >
+            <h3 className="text-gray-800 text-sm md:text-base font-bold leading-tight group-hover:text-[#0066cc] transition-colors duration-300 mb-3 flex-1 line-clamp-2">
+              {article.title}
+            </h3>
+          </Link>
 
           {/* Meta Info */}
           <div className="flex items-center justify-between text-gray-500 text-xs mt-auto pt-3 border-t border-gray-100">
