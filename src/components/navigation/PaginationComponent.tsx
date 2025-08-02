@@ -82,8 +82,8 @@ export default function PaginationComponent({
               aria-disabled={currentPage === 1}
               tabIndex={currentPage === 1 ? -1 : 0}
               onClick={(e) => currentPage === 1 && e.preventDefault()}
-              className={`border border-gray-200 rounded-lg hover:border-[#0763fe] hover:text-[#0763fe] transition-colors duration-200 ${
-                currentPage === 1 ? 'pointer-events-none opacity-50' : 'hover:bg-[#0763fe]/5'
+              className={`border border-gray-200 rounded-lg hover:border-[#0066cc] hover:text-[#0066cc] transition-colors duration-200 ${
+                currentPage === 1 ? 'pointer-events-none opacity-50' : 'hover:bg-[#0066cc]/5'
               }`}
             />
           </PaginationItem>
@@ -107,8 +107,8 @@ export default function PaginationComponent({
                   aria-current={isActive ? 'page' : undefined}
                   className={`w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors duration-200 ${
                     isActive
-                      ? 'bg-[#0763fe] text-white hover:bg-[#0d4175] border-0'
-                      : 'text-gray-700 border border-gray-200 hover:border-[#0763fe] hover:text-[#0763fe] hover:bg-[#0763fe]/5'
+                      ? 'bg-[#0066cc] text-white hover:bg-[#0d4175] border-0'
+                      : 'text-gray-700 border border-gray-200 hover:border-[#0066cc] hover:text-[#0066cc] hover:bg-[#0066cc]/5'
                   }`}
                 >
                   {pageNumber}
@@ -123,10 +123,10 @@ export default function PaginationComponent({
               aria-disabled={currentPage >= totalPages}
               tabIndex={currentPage >= totalPages ? -1 : 0}
               onClick={(e) => currentPage >= totalPages && e.preventDefault()}
-              className={`border border-gray-200 rounded-lg hover:border-[#0763fe] hover:text-[#0763fe] transition-colors duration-200 ${
+              className={`border border-gray-200 rounded-lg hover:border-[#0066cc] hover:text-[#0066cc] transition-colors duration-200 ${
                 currentPage >= totalPages
                   ? 'pointer-events-none opacity-50'
-                  : 'hover:bg-[#0763fe]/5'
+                  : 'hover:bg-[#0066cc]/5'
               }`}
             />
           </PaginationItem>

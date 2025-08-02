@@ -4,13 +4,15 @@ import Card from '@/components/categorySection/Card'
 import PaginationComponent from '@/components/navigation/PaginationComponent'
 import NoArticlesFound from '@/components/categorySection/NoArticles'
 
-export default async function page({
-  params,
-}: {
-  params: Promise<{ [key: string]: string | undefined }>
-}) {
-  const { categorySlug } = await params
-  const { posts, pagination } = await fetchByCategory(categorySlug || '', 1, 18)
+type Params = Promise<{ [key: string]: string }>
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+export default async function page(props: { params: Params; searchParams: SearchParams }) {
+  const searchParams = await props.searchParams
+  const currentPage = searchParams.page ? parseInt(searchParams.page as string, 10) : 1
+  const limit = 18
+  const { categorySlug } = await props.params
+  const { posts, pagination } = await fetchByCategory(categorySlug, currentPage, limit)
 
   return (
     <>
@@ -26,7 +28,9 @@ export default async function page({
                 <Card key={post.id} article={post} />
               ))}
             </div>
-            <PaginationComponent totalPages={pagination.totalPages} />
+            <div className="mb-4">
+              <PaginationComponent totalPages={pagination.totalPages} />
+            </div>
           </>
         )}
       </section>
