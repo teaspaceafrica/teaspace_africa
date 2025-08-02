@@ -25,6 +25,11 @@ export default buildConfig({
   },
   collections: [Users, Media, Categories, Articles, Newsletter],
   editor: lexicalEditor(),
+  cors: [
+    'https://teaspace.digital',
+    'https://teaspaceafrica-production.up.railway.app',
+    'https://www.teaspace.digital',
+  ],
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
 
