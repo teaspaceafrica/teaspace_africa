@@ -8,17 +8,27 @@ import { Articles } from '@/types/types'
 
 export default function GroupTwo({ posts }: { posts: Articles[] }) {
   const moviesArticles = posts.filter((post) => {
-    if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'Movies'
-    }
-    return false
+    const isMovieCategory =
+      typeof post.category === 'object' &&
+      'name' in post.category &&
+      post.category.name === 'Movies'
+
+    const isNotFeaturedOrTrending =
+      post.subcategory !== 'isFeatured' && post.subcategory !== 'isTrending'
+
+    return isMovieCategory && isNotFeaturedOrTrending
   })
 
   const gossipArticles = posts.filter((post) => {
-    if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'Gossip'
-    }
-    return false
+    const isGossipCategory =
+      typeof post.category === 'object' &&
+      'name' in post.category &&
+      post.category.name === 'Gossip'
+
+    const isNotFeaturedOrTrending =
+      post.subcategory !== 'isFeatured' && post.subcategory !== 'isTrending'
+
+    return isGossipCategory && isNotFeaturedOrTrending
   })
 
   return (

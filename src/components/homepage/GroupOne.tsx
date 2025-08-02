@@ -8,17 +8,25 @@ import Link from 'next/link'
 
 export default function GroupOne({ posts }: { posts: Articles[] }) {
   const musicArticles = posts.filter((post) => {
-    if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'Music'
-    }
-    return false
+    const isMusicCategory =
+      typeof post.category === 'object' && 'name' in post.category && post.category.name === 'Music'
+
+    const isNotFeaturedOrTrending =
+      post.subcategory !== 'isFeatured' && post.subcategory !== 'isTrending'
+
+    return isMusicCategory && isNotFeaturedOrTrending
   })
 
   const celebrityArticles = posts.filter((post) => {
-    if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'Celebrity'
-    }
-    return false
+    const isCelebCategory =
+      typeof post.category === 'object' &&
+      'name' in post.category &&
+      post.category.name === 'Celebrity'
+
+    const isNotFeaturedOrTrending =
+      post.subcategory !== 'isFeatured' && post.subcategory !== 'isTrending'
+
+    return isCelebCategory && isNotFeaturedOrTrending
   })
 
   return (
