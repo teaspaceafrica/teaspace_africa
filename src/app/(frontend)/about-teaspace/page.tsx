@@ -11,7 +11,7 @@ export const metadata = {
     title: 'About TeaSpace | Entertainment, Celebrities & Pop Culture',
     description:
       'TeaSpace connects communities through compelling entertainment journalism. Get to know our mission, our values, and our vision for the future of digital media.',
-    url: `${process.env.NEXT_PUBLIC_SITE_UR}/about-teaspace`,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}/about-teaspace`,
     siteName: 'TeaSpace',
     images: [
       {
@@ -35,7 +35,7 @@ export const metadata = {
   },
 
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_UR}/about-teaspace`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/about-teaspace`,
   },
 
   icons: {
@@ -49,7 +49,7 @@ export const metadata = {
     'og:description':
       'Learn more about TeaSpace and our mission to deliver accurate, timely, and trustworthy entertainment news.',
     'og:image': '/light.png',
-    'og:url': `${process.env.NEXT_PUBLIC_SITE_UR}/about-teaspace`,
+    'og:url': `${process.env.NEXT_PUBLIC_SITE_URL}/about-teaspace`,
     'twitter:image': '/light.png',
     'twitter:title': 'About TeaSpace',
     'twitter:description':
