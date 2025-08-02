@@ -33,7 +33,7 @@ export const metadata = {
     description:
       'Use TeaSpace search to explore articles, celebrity bios, and trending stories. Find what matters to you.',
     site: '@teaspace',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/light.png`],
+    images: ['/light.png'],
   },
 
   alternates: {

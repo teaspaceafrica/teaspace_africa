@@ -34,7 +34,7 @@ export const metadata = {
     description:
       'Stay in the loop with the latest celebrity trends, viral stories, and entertainment buzz on TeaSpace.',
     site: '@teaspace',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/light.png`],
+    images: ['/light.png'],
   },
 
   alternates: {

@@ -31,7 +31,7 @@ export const metadata = {
     description:
       'By using TeaSpace, you agree to our Terms & Conditions. Learn about content usage, disclaimers, and your rights on our platform.',
     site: '@teaspace',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/light.png`],
+    images: ['/light.png'],
   },
 
   alternates: {

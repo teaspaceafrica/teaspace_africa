@@ -31,7 +31,7 @@ export const metadata = {
     description:
       'Learn how TeaSpace protects your data and respects your privacy while delivering trusted entertainment news.',
     site: '@teaspace',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/light.png`],
+    images: ['/light.png'],
   },
 
   alternates: {

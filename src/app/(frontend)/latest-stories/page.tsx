@@ -34,7 +34,7 @@ export const metadata = {
     description:
       'Read the freshest entertainment stories and celebrity updates. TeaSpace brings you news that matters — fast and factual.',
     site: '@teaspace',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/light.png`],
+    images: ['/light.png'],
   },
 
   alternates: {

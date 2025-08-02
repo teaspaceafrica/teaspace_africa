@@ -30,7 +30,7 @@ export const metadata = {
     title: 'Contact TeaSpace',
     description: 'Questions? Tips? Feedback? Get in touch with the TeaSpace editorial team.',
     site: '@teaspace',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/light.png`],
+    images: ['/light.png'],
   },
 
   alternates: {
