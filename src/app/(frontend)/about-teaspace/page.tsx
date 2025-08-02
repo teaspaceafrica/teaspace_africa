@@ -31,7 +31,7 @@ export const metadata = {
     description:
       'Get to know TeaSpace — the entertainment news platform built on accuracy, storytelling, and integrity.',
     site: '@teaspace',
-    images: [`${process.env.NEXT_PUBLIC_SITE_UR}/og-teaspace.jpg`],
+    images: ['/light.png'],
   },
 
   alternates: {
