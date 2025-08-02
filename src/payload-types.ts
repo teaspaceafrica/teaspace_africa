@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     categories: Category;
     articles: Article;
+    newsletter: Newsletter;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    newsletter: NewsletterSelect<false> | NewsletterSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -258,6 +260,16 @@ export interface Article {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter".
+ */
+export interface Newsletter {
+  id: number;
+  email: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -278,6 +290,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'newsletter';
+        value: number | Newsletter;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -406,6 +422,15 @@ export interface ArticlesSelect<T extends boolean = true> {
   featured?: T;
   trending?: T;
   readTime?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter_select".
+ */
+export interface NewsletterSelect<T extends boolean = true> {
+  email?: T;
   updatedAt?: T;
   createdAt?: T;
 }

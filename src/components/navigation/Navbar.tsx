@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react'
 import {
   FaBars,
   FaTimes,
-  FaSearch,
   FaInstagram,
-  FaTwitter,
   FaFacebookF,
   FaYoutube,
   FaStar,
@@ -14,18 +12,19 @@ import {
   FaTshirt,
   FaComments,
 } from 'react-icons/fa'
+import { MdLiveTv } from 'react-icons/md'
 import { IoTrendingUp } from 'react-icons/io5'
 import Link from 'next/link'
 import Image from 'next/image'
+import Search from '../searchComponent/Search'
+import { FaXTwitter } from 'react-icons/fa6'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeItem, setActiveItem] = useState(0)
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-  const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
 
   // Handle scroll effect
   useEffect(() => {
@@ -53,10 +52,16 @@ export default function Navbar() {
       href: '/movies',
     },
     {
+      name: 'TV Shows',
+      icon: MdLiveTv,
+      href: '/tvshows',
+    },
+    {
       name: 'Fashion',
       icon: FaTshirt,
       href: '/fashion',
     },
+
     {
       name: 'Gossip',
       icon: FaComments,
@@ -71,7 +76,7 @@ export default function Navbar() {
 
   const socialLinks = [
     { icon: FaInstagram, href: '#', gradient: 'from-purple-500 to-pink-500' },
-    { icon: FaTwitter, href: '#', gradient: 'from-blue-400 to-blue-600' },
+    { icon: FaXTwitter, href: '#', gradient: 'from-blue-400 to-blue-600' },
     { icon: FaFacebookF, href: '#', gradient: 'from-blue-600 to-blue-800' },
     { icon: FaYoutube, href: '#', gradient: 'from-red-500 to-red-700' },
   ]
@@ -174,33 +179,7 @@ export default function Navbar() {
               {/* Enhanced Search and Menu */}
               <div className="flex items-center space-x-4">
                 {/* Animated Search */}
-                <div className="relative">
-                  <button
-                    onClick={toggleSearch}
-                    className={`
-                      p-3 rounded-full transition-all duration-300 group
-                      ${
-                        isSearchOpen
-                          ? 'bg-gradient-to-r from-[#0066cc] to-[#d53020] text-white shadow-lg'
-                          : 'bg-gray-100 hover:bg-gradient-to-r hover:from-[#0066cc] hover:to-[#d53020] text-gray-600 hover:text-white'
-                      }
-                    `}
-                  >
-                    <FaSearch className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  </button>
-                  {isSearchOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200/50 p-4 backdrop-blur-lg">
-                      <div className="relative">
-                        <input
-                          type="text"
-                          placeholder="What's the tea today? ☕"
-                          className="w-full px-4 py-3 pl-12 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0066cc] focus:border-transparent text-gray-700 placeholder-gray-500"
-                        />
-                        <FaSearch className="absolute left-4 top-3.5 w-4 h-4 text-gray-400" />
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <Search />
 
                 {/* Futuristic Mobile Menu */}
                 <div className="lg:hidden">

@@ -20,6 +20,103 @@ import {
 } from 'react-icons/fa'
 import { IoTrendingUp } from 'react-icons/io5'
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; categorySlug: string }>
+}) {
+  const { slug, categorySlug } = await params
+
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
+
+  const { docs } = await payload.find({
+    collection: 'articles',
+    where: {
+      slug: { equals: slug },
+    },
+    depth: 2,
+  })
+
+  const post = docs[0]
+
+  if (!post) {
+    return {
+      title: 'Article Not Found | TeaSpace',
+      description:
+        'The article you’re looking for doesn’t exist. Discover trending entertainment stories and celebrity features on TeaSpace.',
+    }
+  }
+
+  const postTitle = post.title || 'Entertainment News Article – TeaSpace'
+  const postExcerpt =
+    post.excerpt ||
+    'Stay in the know with real-time entertainment news, celebrity updates, and pop culture highlights on TeaSpace.'
+  const imageUrl =
+    typeof post?.thumbnail === 'object' && post.thumbnail?.url
+      ? post.thumbnail.url
+      : '/og-teaspace.jpg'
+
+  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}/${slug}`
+  const authorName = post.author || 'TeaSpace Editors'
+
+  return {
+    title: postTitle,
+    description: postExcerpt,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+
+    openGraph: {
+      title: `${postTitle} | TeaSpace`,
+      description: postExcerpt,
+      url: pageUrl,
+      siteName: 'TeaSpace',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: postTitle,
+        },
+      ],
+      type: 'article',
+      locale: 'en_US',
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      title: `${postTitle} | TeaSpace`,
+      description: postExcerpt,
+      images: [imageUrl],
+      site: '@teaspace', // Update to actual Twitter/X handle
+    },
+
+    alternates: {
+      canonical: pageUrl,
+    },
+
+    authors: [authorName],
+    publisher: 'TeaSpace',
+
+    icons: {
+      icon: '/favicon.ico',
+      shortcut: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
+    },
+
+    other: {
+      'og:title': `${postTitle} | TeaSpace`,
+      'og:description': postExcerpt,
+      'og:image': imageUrl,
+      'og:url': pageUrl,
+      'og:type': 'article',
+      'twitter:image': imageUrl,
+      'twitter:title': `${postTitle} | TeaSpace`,
+      'twitter:description': postExcerpt,
+      'twitter:card': 'summary_large_image',
+    },
+  }
+}
+
 export async function generateStaticParams() {
   try {
     const allposts = await fetchAllPosts(1, 100)

@@ -80,9 +80,22 @@ export default function Card({ article }: ArticleCardProps) {
               {/* Read More Indicator */}
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-px bg-gradient-to-r from-[#0066cc] to-[#d53020] group-hover:w-12 transition-all duration-300"></div>
-                <span className="text-[#d53020] text-sm font-semibold uppercase tracking-wide group-hover:text-[#0066cc] transition-colors duration-300">
-                  Read
-                </span>
+                <Link
+                  href={`/${
+                    typeof article.category === 'object' &&
+                    article.category !== null &&
+                    'slug' in article.category
+                      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        (article.category as any).slug
+                      : typeof article.category === 'string' || typeof article.category === 'number'
+                        ? article.category
+                        : 'entertainment'
+                  }/${article.slug}`}
+                >
+                  <span className="text-[#d53020] text-sm font-semibold uppercase tracking-wide group-hover:text-[#0066cc] transition-colors duration-300">
+                    Read
+                  </span>
+                </Link>
               </div>
             </div>
           </div>

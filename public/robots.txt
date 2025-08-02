@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /__next/
+
+
+Host: https://teaspace.digital
+
+
+Sitemap: https://teaspace.digital/sitemap.xml

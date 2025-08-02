@@ -6,7 +6,7 @@ interface CategoryHeaderProps {
   icon?: string // Optional icon prop to allow for dynamic icons
 }
 
-export default function CategoryHeader({ title, icon }: CategoryHeaderProps) {
+export default function CategoryHeader({ title }: CategoryHeaderProps) {
   return (
     <div className="flex items-center justify-between mb-6">
       <div className="flex items-center flex-1">
