@@ -1,11 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import {
-  FaInstagram,
-  FaFacebookF,
-  FaYoutube,
-  FaTiktok,
-  FaSnapchatGhost,
   FaStar,
   FaMusic,
   FaFilm,
@@ -14,15 +9,17 @@ import {
   FaPhone,
   FaMapMarkerAlt,
   FaArrowUp,
+  FaClock,
+  FaFire,
 } from 'react-icons/fa'
-import { FaXTwitter } from 'react-icons/fa6'
 import { HiSparkles } from 'react-icons/hi'
 import { IoTrendingUp } from 'react-icons/io5'
 import Link from 'next/link'
 import Image from 'next/image'
 import { AlertCircle } from 'lucide-react'
+import { Articles } from '@/types/types'
 
-export default function Footer() {
+export default function Footer({ posts }: { posts: Articles[] }) {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [alreadySubscribed, setAlreadySubscribed] = useState(false)
@@ -36,52 +33,8 @@ export default function Footer() {
     { name: 'Trending Now', href: '/trending', icon: IoTrendingUp },
   ]
 
-  const categories = [
-    {
-      title: 'Entertainment',
-      links: [
-        { name: 'Movies & Reviews', href: '/entertainment/movies' },
-        { name: 'TV Shows', href: '/entertainment/tv' },
-        { name: 'Music Industry', href: '/entertainment/music' },
-        { name: 'Gaming News', href: '/entertainment/gaming' },
-        { name: 'Streaming Updates', href: '/entertainment/streaming' },
-      ],
-    },
-    {
-      title: 'Celebrity',
-      links: [
-        { name: 'Latest News', href: '/celebrity/news' },
-        { name: 'Exclusive Interviews', href: '/celebrity/interviews' },
-        { name: 'Red Carpet', href: '/celebrity/red-carpet' },
-        { name: 'Celebrity Style', href: '/celebrity/style' },
-        { name: 'Relationships', href: '/celebrity/relationships' },
-      ],
-    },
-    {
-      title: 'Lifestyle',
-      links: [
-        { name: 'Fashion Week', href: '/fashion/fashion-week' },
-        { name: 'Beauty Trends', href: '/fashion/beauty' },
-        { name: 'Street Style', href: '/fashion/street-style' },
-        { name: 'Designer Spotlight', href: '/fashion/designers' },
-        { name: 'Style Guide', href: '/fashion/guide' },
-      ],
-    },
-  ]
-
-  const socialLinks = [
-    { icon: FaInstagram, href: '#', gradient: 'from-purple-500 to-pink-500', name: 'Instagram' },
-    { icon: FaXTwitter, href: '#', gradient: 'from-blue-400 to-blue-600', name: 'Twitter' },
-    { icon: FaFacebookF, href: '#', gradient: 'from-blue-600 to-blue-800', name: 'Facebook' },
-    { icon: FaYoutube, href: '#', gradient: 'from-red-500 to-red-700', name: 'YouTube' },
-    { icon: FaTiktok, href: '#', gradient: 'from-black to-gray-800', name: 'TikTok' },
-    {
-      icon: FaSnapchatGhost,
-      href: '#',
-      gradient: 'from-yellow-400 to-yellow-600',
-      name: 'Snapchat',
-    },
-  ]
+  const latestArticles = posts.slice(0, 2).filter((post) => post.subcategory !== 'isTrending')
+  const trendingArticles = posts.filter((post) => post.subcategory === 'isTrending').slice(0, 2)
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -119,6 +72,19 @@ export default function Footer() {
       alert('Failed to subscribe. Please try again later.')
       console.error(error)
     }
+  }
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    })
+  }
+
+  const truncateTitle = (title: string, maxLength: number = 60) => {
+    return title.length > maxLength ? title.substring(0, maxLength) + '...' : title
   }
 
   return (
@@ -162,7 +128,7 @@ export default function Footer() {
                     Subscribe Now
                   </button>
                 </div>
-                <div className="px-56">
+                <div className="max-w-md mx-auto">
                   {/* Success notification */}
                   {subscribed && (
                     <div className="mt-4 px-4 py-3 bg-[#0066cc] bg-opacity-20 rounded-md border-l-4 border-[#0066cc]/50 animate-fade-in">
@@ -173,7 +139,7 @@ export default function Footer() {
                   )}
                   {/* Already subscribed notification */}
                   {alreadySubscribed && (
-                    <div className="mt-4 px-4 py-3 bg-[#0066cc] bg-opacity-20 rounded-md border-l-4 border-[#d53020] animate-fade-in flex items-center justify-center">
+                    <div className="mt-4 px-4 py-3 bg-[#0066cc] bg-opacity-20 rounded-md border-l-4 border-[#d53020] animate-fade-in flex items-center">
                       <AlertCircle className="h-5 w-5 text-white mr-2 flex-shrink-0 mt-0.5" />
                       <div>
                         <p className="text-white text-sm font-medium">Already Subscribed</p>
@@ -209,12 +175,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Main Footer Links */}
+        {/* Articles Section */}
         <div className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Brand Section */}
-              <div className="col-span-3 lg:col-span-2">
+              <div className="lg:col-span-1">
                 <div className="mb-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <div>
@@ -226,7 +192,7 @@ export default function Footer() {
                           height={120}
                           className="rounded-full shadow-lg transition-transform duration-300 group-hover:scale-105"
                         />
-                      </Link>{' '}
+                      </Link>
                     </div>
                   </div>
                   <p className="text-gray-300 mb-6 leading-relaxed">
@@ -240,11 +206,11 @@ export default function Footer() {
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3 text-gray-300">
                     <FaEnvelope className="w-4 h-4 text-[#0066cc]" />
-                    <span>hello@teaspaceafrica.com</span>
+                    <span>teaspace@gmail.com</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <FaPhone className="w-4 h-4 text-[#0066cc]" />
-                    <span>+254 700 123 456</span>
+                    <span>+254 757 807097</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <FaMapMarkerAlt className="w-4 h-4 text-[#0066cc]" />
@@ -253,50 +219,125 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Category Links */}
-              {categories.map(({ title, links }, index) => (
-                <div key={index}>
-                  <h4 className="text-lg font-semibold mb-4 text-white">{title}</h4>
-                  <ul className="space-y-2">
-                    {links.map((link, linkIndex) => (
-                      <li key={linkIndex}>
-                        <Link
-                          href={link.href}
-                          className="text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-[#0066cc] hover:to-[#d53020] hover:bg-clip-text transition-all duration-300 block py-1"
-                        >
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+              {/* Latest Articles */}
+              <div className="lg:col-span-1">
+                <div className="flex items-center space-x-2 mb-6">
+                  <FaClock className="w-5 h-5 text-[#0066cc]" />
+                  <h4 className="text-xl font-bold text-white">Latest Articles</h4>
                 </div>
-              ))}
+                <div className="space-y-4">
+                  {latestArticles.length > 0 ? (
+                    latestArticles.map((article, index) => (
+                      <Link
+                        key={index}
+                        href={`/${
+                          typeof article.category === 'object' &&
+                          article.category !== null &&
+                          'slug' in article.category
+                            ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              (article.category as any).slug
+                            : typeof article.category === 'string' ||
+                                typeof article.category === 'number'
+                              ? article.category
+                              : 'entertainment'
+                        }/${article.slug}`}
+                        className="block group"
+                      >
+                        <div className="p-4 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-[#0066cc]/20 hover:to-[#d53020]/20 transition-all duration-300 border border-white/10 hover:border-white/20">
+                          <h5 className="font-semibold text-white group-hover:text-yellow-300 transition-colors duration-300 mb-2 leading-tight">
+                            {truncateTitle(article.title)}
+                          </h5>
+                          <div className="flex items-center space-x-2 text-gray-400 text-sm">
+                            <span className="px-2 py-1 bg-[#0066cc]/20 rounded-full text-xs">
+                              {typeof article.category === 'object' &&
+                              article.category !== null &&
+                              'slug' in article.category
+                                ? article.category.slug
+                                : typeof article.category === 'string' ||
+                                    typeof article.category === 'number'
+                                  ? article.category
+                                  : 'music'}
+                            </span>
+                            <span>•</span>
+                            <span>
+                              {article.publishedAt ? formatDate(article.publishedAt) : 'Recent'}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="text-gray-400 text-center py-8">
+                      <p>No latest articles available</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Trending Articles */}
+              <div className="lg:col-span-1">
+                <div className="flex items-center space-x-2 mb-6">
+                  <FaFire className="w-5 h-5 text-[#d53020] animate-pulse" />
+                  <h4 className="text-xl font-bold text-white">Trending Now</h4>
+                </div>
+                <div className="space-y-4">
+                  {trendingArticles.length > 0 ? (
+                    trendingArticles.map((article, index) => (
+                      <Link
+                        key={index}
+                        href={`/${
+                          typeof article.category === 'object' &&
+                          article.category !== null &&
+                          'slug' in article.category
+                            ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              (article.category as any).slug
+                            : typeof article.category === 'string' ||
+                                typeof article.category === 'number'
+                              ? article.category
+                              : 'entertainment'
+                        }/${article.slug}`}
+                        className="block group"
+                      >
+                        <div className="p-4 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-[#d53020]/20 hover:to-[#0066cc]/20 transition-all duration-300 border border-white/10 hover:border-white/20 relative overflow-hidden">
+                          <div className="absolute top-2 right-2">
+                            <IoTrendingUp className="w-4 h-4 text-[#d53020] group-hover:animate-bounce" />
+                          </div>
+                          <h5 className="font-semibold text-white group-hover:text-yellow-300 transition-colors duration-300 mb-2 leading-tight pr-6">
+                            {truncateTitle(article.title)}
+                          </h5>
+                          <div className="flex items-center space-x-2 text-gray-400 text-sm">
+                            <span className="px-2 py-1 bg-[#d53020]/20 rounded-full text-xs">
+                              {typeof article.category === 'object' &&
+                              article.category !== null &&
+                              'slug' in article.category
+                                ? article.category.slug
+                                : typeof article.category === 'string' ||
+                                    typeof article.category === 'number'
+                                  ? article.category
+                                  : 'music'}
+                            </span>
+                            <span>•</span>
+                            <span>
+                              {article.publishedAt ? formatDate(article.publishedAt) : 'Recent'}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="text-gray-400 text-center py-8">
+                      <p>No trending articles available</p>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Social Media & Bottom Section */}
+        {/* Bottom Section */}
         <div className="border-t border-gray-700">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            {/* Social Media */}
-            <div className="text-center mb-8">
-              <h4 className="text-lg font-semibold mb-4">Follow the Conversation</h4>
-              <div className="flex justify-center space-x-4">
-                {socialLinks.map(({ icon: Icon, href, gradient, name }, index) => (
-                  <Link
-                    key={index}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-4 rounded-full bg-gradient-to-r ${gradient} hover:scale-110 transform transition-all duration-300 shadow-lg hover:shadow-xl group`}
-                    title={name}
-                  >
-                    <Icon className="w-5 h-5 text-white group-hover:animate-pulse" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-
             {/* Additional Links */}
             <div className="flex flex-wrap justify-center items-center space-x-6 mb-6 text-sm">
               <Link

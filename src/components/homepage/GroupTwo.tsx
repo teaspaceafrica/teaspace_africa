@@ -7,16 +7,16 @@ import ArticleCard from './ArticleCard'
 import { Articles } from '@/types/types'
 
 export default function GroupTwo({ posts }: { posts: Articles[] }) {
-  const musicArticles = posts.filter((post) => {
+  const moviesArticles = posts.filter((post) => {
     if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'Music'
+      return post.category.name === 'Movies'
     }
     return false
   })
 
-  const celebrityArticles = posts.filter((post) => {
+  const gossipArticles = posts.filter((post) => {
     if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'Celebrity'
+      return post.category.name === 'Gossip'
     }
     return false
   })
@@ -27,22 +27,22 @@ export default function GroupTwo({ posts }: { posts: Articles[] }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Section - Music */}
           <div className="leftsection space-y-6">
-            <CategoryHeader title="Music" />
+            <CategoryHeader title="Movies" />
 
             <div className="banner">
-              <FeaturedArticle article={musicArticles[0]} />
+              <FeaturedArticle article={moviesArticles[0]} />
             </div>
 
             <div className="otherarticles">
               <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                {musicArticles.slice(1, 3).map((article) => (
+                {moviesArticles.slice(1, 3).map((article) => (
                   <ArticleCard key={article.id} article={article} />
                 ))}
               </div>
 
               {/* Additional smaller cards */}
               <div className="mt-6 grid grid-cols-2 gap-3">
-                {musicArticles.slice(0, 2).map((article) => (
+                {moviesArticles.slice(0, 2).map((article) => (
                   <div key={article.id} className="group cursor-pointer">
                     <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-xl bg-white transition-all duration-300 border border-[#d53020]/20 hover:border-[#d53020] hover:-translate-y-0.5">
                       <div className="relative h-24 sm:h-32 overflow-hidden">
@@ -84,22 +84,22 @@ export default function GroupTwo({ posts }: { posts: Articles[] }) {
 
           {/* Right Section - Celebrity */}
           <div className="rightsection space-y-6 text-white">
-            <CategoryHeader title="Celebrity" />
+            <CategoryHeader title="Gossip" />
 
             <div className="banner">
-              <FeaturedArticle article={celebrityArticles[1]} />
+              <FeaturedArticle article={gossipArticles[1]} />
             </div>
 
             <div className="otherarticles">
               <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                {celebrityArticles.slice(1, 3).map((article) => (
+                {gossipArticles.slice(1, 3).map((article) => (
                   <ArticleCard key={article.id} article={article} />
                 ))}
               </div>
 
               {/* Additional smaller cards */}
               <div className="mt-6 grid grid-cols-2 gap-3">
-                {celebrityArticles.slice(0, 2).map((article) => (
+                {gossipArticles.slice(0, 2).map((article) => (
                   <div key={article.id} className="group cursor-pointer">
                     <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-xl bg-white transition-all duration-300 border border-[#d53020]/20 hover:border-[#d53020] hover:-translate-y-0.5">
                       <div className="relative h-24 sm:h-32 overflow-hidden">

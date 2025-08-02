@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 import Navbar from '@/components/navigation/Navbar'
-import Footer from '@/components/navigation/Footer'
+import FooterWrapper from '@/components/Wrappers/FooterWrapper'
 
 export const metadata = {
   title: 'TeaSpace | Entertainment News, Celebrity Stories & Pop Culture',
@@ -64,7 +64,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <main>
           <Navbar />
           {children}
-          <Footer />
+          <FooterWrapper />
         </main>
       </body>
     </html>
