@@ -5,6 +5,7 @@ export const Articles: CollectionConfig = {
   slug: 'articles',
   admin: {
     useAsTitle: 'title',
+    group: 'Content Area',
   },
   access: {
     create: ({ req }) => !!req.user,
@@ -111,31 +112,6 @@ export const Articles: CollectionConfig = {
         hidden: true,
       },
     },
-    {
-      name: 'breakingNews',
-      type: 'checkbox',
-      label: 'Breaking News',
-      admin: {
-        description: 'Check this box to mark the article as breaking news.',
-      },
-    },
-    {
-      name: 'featured',
-      type: 'checkbox',
-      label: 'Featured Article',
-      admin: {
-        description: 'Check this box to feature the article on the homepage.',
-      },
-    },
-    {
-      name: 'trending',
-      type: 'checkbox',
-      label: 'Trending Article',
-      admin: {
-        description: 'Check this box to mark the article as trending.',
-      },
-    },
-
     {
       name: 'readTime',
       type: 'text',
