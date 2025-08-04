@@ -17,8 +17,11 @@ import {
   FaTwitter,
   FaInstagram,
   FaLinkedin,
+  FaFilm,
+  FaMusic,
 } from 'react-icons/fa'
 import { IoTrendingUp } from 'react-icons/io5'
+import NewsLetter from '@/components/categorySection/NewsLetter'
 
 export async function generateMetadata({
   params,
@@ -262,25 +265,25 @@ export default async function BlogPostPage({
                     <span>All Stories</span>
                   </Link>
                   <Link
-                    href="/politics"
+                    href="/music"
                     className="flex items-center space-x-2 text-sm text-gray-700 hover:text-[#0066cc] transition-colors p-2 rounded-lg hover:bg-gray-50"
                   >
-                    <FaCrown className="w-4 h-4" />
+                    <FaMusic className="w-4 h-4" />
                     <span>Music</span>
                   </Link>
                   <Link
-                    href="/news"
+                    href="/movies"
+                    className="flex items-center space-x-2 text-sm text-gray-700 hover:text-[#0066cc] transition-colors p-2 rounded-lg hover:bg-gray-50"
+                  >
+                    <FaFilm className="w-4 h-4" />
+                    <span>Movies</span>
+                  </Link>
+                  <Link
+                    href="/gossip"
                     className="flex items-center space-x-2 text-sm text-gray-700 hover:text-[#0066cc] transition-colors p-2 rounded-lg hover:bg-gray-50"
                   >
                     <FaNewspaper className="w-4 h-4" />
-                    <span>Art</span>
-                  </Link>
-                  <Link
-                    href="/advertise-with-us"
-                    className="flex items-center space-x-2 text-sm text-gray-700 hover:text-[#0066cc] transition-colors p-2 rounded-lg hover:bg-gray-50"
-                  >
-                    <FaStar className="w-4 h-4" />
-                    <span>Advertise</span>
+                    <span>Gossip</span>
                   </Link>
                 </div>
               </div>
@@ -397,22 +400,11 @@ export default async function BlogPostPage({
                   </div>
                   <div className="flex-1">
                     <div className="font-bold text-gray-900 text-lg">{authorName}</div>
-                    <div className="text-[#0066cc] font-medium mb-3">Contributing Author</div>
+                    <div className="text-[#0066cc] font-medium mb-3 capitalize">{authorRole}</div>
                     <p className="text-gray-600 leading-relaxed">
                       Contributing author with expertise in the field. Published{' '}
                       {publishedDateFormatted}. Bringing you the latest insights and updates.
                     </p>
-                    <div className="flex items-center space-x-3 mt-4">
-                      <button className="text-[#0066cc] hover:text-[#d53020] transition-colors">
-                        <FaTwitter className="w-5 h-5" />
-                      </button>
-                      <button className="text-[#0066cc] hover:text-[#d53020] transition-colors">
-                        <FaInstagram className="w-5 h-5" />
-                      </button>
-                      <button className="text-[#0066cc] hover:text-[#d53020] transition-colors">
-                        <FaLinkedin className="w-5 h-5" />
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -474,27 +466,7 @@ export default async function BlogPostPage({
               </div>
 
               {/* Newsletter Signup */}
-              <div className="bg-gradient-to-br from-[#0066cc] to-[#d53020] rounded-2xl shadow-lg p-6 text-white">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaNewspaper className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">Stay Updated</h3>
-                  <p className="text-white/90 text-sm mb-4">
-                    Get the latest news delivered to your inbox.
-                  </p>
-                  <div className="space-y-3">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="w-full px-4 py-2 rounded-lg outline-2 outline-white/80 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white/50"
-                    />
-                    <button className="w-full bg-white text-[#0066cc] font-semibold py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                      Subscribe
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <NewsLetter />
             </div>
           </div>
         </div>

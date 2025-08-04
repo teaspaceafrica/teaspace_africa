@@ -149,7 +149,7 @@ export default async function BioPage({ params }: { params: Promise<{ [key: stri
         <div className="text-center">
           <div className="text-6xl text-gray-300 mb-4">404</div>
           <div className="text-xl text-gray-600 mb-4">Biography not found</div>
-          <Link href="/bios" className="text-[#0066cc] hover:text-[#d53020] transition-colors">
+          <Link href="/biography" className="text-[#0066cc] hover:text-[#d53020] transition-colors">
             ← Back to Biographies
           </Link>
         </div>
@@ -258,7 +258,7 @@ export default async function BioPage({ params }: { params: Promise<{ [key: stri
         {/* Navigation */}
         <nav className="relative z-10 p-6">
           <Link
-            href="/bios"
+            href="/biography"
             className="inline-flex items-center space-x-2 text-gray-600 hover:text-[#0066cc] transition-colors duration-300 group"
           >
             <FaArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
