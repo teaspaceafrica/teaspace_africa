@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import logoDark from 'public/dark.png'
-import logo from 'public/light.png'
+import logoDark from '/public/dark.png'
+import logo from '/public/light.png'
 
 export default function Icon() {
   return (

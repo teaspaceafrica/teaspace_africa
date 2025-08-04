@@ -57,8 +57,8 @@ export default buildConfig({
     'https://www.teaspace.digital',
   ],
   secret: process.env.PAYLOAD_SECRET || '',
-  serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
-  // serverURL: 'http://localhost:3000',
+  // serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
+  serverURL: 'http://localhost:3000',
 
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

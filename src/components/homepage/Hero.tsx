@@ -4,15 +4,22 @@ import React from 'react'
 import { FaPlay, FaClock, FaNewspaper } from 'react-icons/fa'
 import { IoTrendingUp } from 'react-icons/io5'
 import { Articles } from '@/types/types'
+import NoArticlesFound from '../categorySection/NoArticles'
 import Link from 'next/link'
 
 export default function Hero({ posts = [] }: { posts?: Articles[] }) {
-  console.log(posts.map((p) => p.subcategory))
-
   const featuredBanner = posts.filter((post) => post.subcategory === 'isFeatured')
   const latestArticles = posts.filter(
     (post) => post.subcategory !== 'isFeatured' && post.subcategory !== 'isTrending',
   )
+
+  if (featuredBanner.length === 0) {
+    return (
+      <div>
+        <NoArticlesFound />
+      </div>
+    )
+  }
 
   return (
     <section className="bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden min-h-screen py-4 sm:py-6 md:py-8">
