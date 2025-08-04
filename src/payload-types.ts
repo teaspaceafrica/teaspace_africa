@@ -72,6 +72,7 @@ export interface Config {
     categories: Category;
     articles: Article;
     newsletter: Newsletter;
+    bios: Bio;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +84,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     newsletter: NewsletterSelect<false> | NewsletterSelect<true>;
+    bios: BiosSelect<false> | BiosSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -241,18 +243,6 @@ export interface Article {
     | null;
   author: number | User;
   /**
-   * Check this box to mark the article as breaking news.
-   */
-  breakingNews?: boolean | null;
-  /**
-   * Check this box to feature the article on the homepage.
-   */
-  featured?: boolean | null;
-  /**
-   * Check this box to mark the article as trending.
-   */
-  trending?: boolean | null;
-  /**
    * Estimated read time in minutes.
    */
   readTime: string;
@@ -266,6 +256,51 @@ export interface Article {
 export interface Newsletter {
   id: number;
   email: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bios".
+ */
+export interface Bio {
+  id: number;
+  name: string;
+  orginalName?: string | null;
+  /**
+   * The slug is automatically generated from the title if left empty.
+   */
+  slug: string;
+  profileImage?: (number | null) | Media;
+  category: string;
+  /**
+   * Optional — can be used to specify subroles like “Hip Hop Artist” or “Film Director”.
+   */
+  role?: string | null;
+  bio: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  socialLinks?:
+    | {
+        platform: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  dateOfBirth: string;
+  featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -295,6 +330,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'newsletter';
         value: number | Newsletter;
+      } | null)
+    | ({
+        relationTo: 'bios';
+        value: number | Bio;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -420,9 +459,6 @@ export interface ArticlesSelect<T extends boolean = true> {
         id?: T;
       };
   author?: T;
-  breakingNews?: T;
-  featured?: T;
-  trending?: T;
   readTime?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -433,6 +469,30 @@ export interface ArticlesSelect<T extends boolean = true> {
  */
 export interface NewsletterSelect<T extends boolean = true> {
   email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bios_select".
+ */
+export interface BiosSelect<T extends boolean = true> {
+  name?: T;
+  orginalName?: T;
+  slug?: T;
+  profileImage?: T;
+  category?: T;
+  role?: T;
+  bio?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  dateOfBirth?: T;
+  featured?: T;
   updatedAt?: T;
   createdAt?: T;
 }

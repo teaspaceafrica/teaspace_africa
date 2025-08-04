@@ -38,3 +38,20 @@ export interface Articles {
   trending?: boolean
   readTime: string
 }
+
+export interface Bios {
+  id: number
+  slug: string
+  name: string
+  orginalName?: string | null
+  dateOfBirth: string
+  category: string
+  role?: string | null
+  socialLinks:
+    | { platform: string; url: string; id?: string | null | undefined }[]
+    | null
+    | undefined
+  featured?: boolean
+  bio: string
+  profileImage: string | { url: string }
+}

@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import slugify from 'slugify'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const Bios: CollectionConfig = {
   slug: 'bios',
@@ -64,6 +65,8 @@ export const Bios: CollectionConfig = {
     {
       name: 'bio',
       type: 'richText',
+      required: true,
+      editor: lexicalEditor(),
     },
     {
       name: 'socialLinks',

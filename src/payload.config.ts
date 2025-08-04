@@ -23,6 +23,31 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      graphics: {
+        Logo: './components/admin/Logo',
+        Icon: './components/admin/Icon',
+      },
+    },
+    meta: {
+      title: 'Admin Panel | TeaSpace',
+      description:
+        'Secure admin dashboard for managing content on TeaSpace - TeaSpace Official Website.',
+      icons: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          sizes: '96x96',
+          url: '/favicon-96x96.png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          type: 'image/png',
+          url: '/apple-touch-icon.png',
+        },
+      ],
+      robots: 'noindex, nofollow',
+    },
   },
   collections: [Users, Media, Categories, Articles, Newsletter, Bios],
   editor: lexicalEditor(),
@@ -32,8 +57,8 @@ export default buildConfig({
     'https://www.teaspace.digital',
   ],
   secret: process.env.PAYLOAD_SECRET || '',
-  serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
-  // serverURL: 'http://localhost:3000',
+  // serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
+  serverURL: 'http://localhost:3000',
 
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

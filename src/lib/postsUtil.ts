@@ -37,8 +37,6 @@ export async function fetchAllPosts(page = 1, limit = 18) {
         typeof post.author === 'object' && post.author !== null && 'name' in post.author
           ? { name: post.author.name }
           : { name: String(post.author) },
-      breakingNews: post.breakingNews ?? false,
-      featured: post.featured ?? false,
       readTime: post.readTime ?? '1 min',
       publishedAt: new Date(post.createdAt).toLocaleDateString('en-US', {
         month: 'long',
@@ -138,7 +136,6 @@ export async function fetchByCategory(slug: string, page = 1, limit = 18) {
         typeof post.author === 'object' && post.author !== null && 'name' in post.author
           ? { name: post.author.name }
           : { name: String(post.author) },
-      featured: post.featured ?? false,
       readTime: post.readTime ?? '1 min',
       publishedAt: new Date(post.createdAt).toLocaleDateString('en-US', {
         month: 'long',

@@ -3,7 +3,7 @@ import TrendingWrapper from '@/components/Wrappers/TrendingWrapper'
 import HeroWrapper from '@/components/Wrappers/HeroWrapper'
 import GroupOneWrapper from '@/components/Wrappers/GroupOneWrapper'
 import GroupTwoWrapper from '@/components/Wrappers/GroupTwoWrapper'
-import CelebBio from '@/components/homepage/CelebBio'
+import BioWrapper from '@/components/Wrappers/BioWrapper'
 
 export default function page() {
   return (
@@ -12,7 +12,7 @@ export default function page() {
       <HeroWrapper />
       <GroupOneWrapper />
       <GroupTwoWrapper />
-      <CelebBio />
+      <BioWrapper />
     </>
   )
 }
