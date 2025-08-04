@@ -4,11 +4,11 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaClock,
-  FaTwitter,
   FaInstagram,
   FaFacebook,
   FaLinkedin,
 } from 'react-icons/fa'
+import { FaXTwitter } from 'react-icons/fa6'
 
 export default function ContactSection() {
   const contactDetails = [
@@ -43,9 +43,9 @@ export default function ContactSection() {
   ]
 
   const socialLinks = [
-    { icon: FaTwitter, href: '#', label: 'Twitter' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaFacebook, href: '#', label: 'Facebook' },
+    { icon: FaXTwitter, href: 'https://x.com/_teaspace', label: 'Twitter' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/tea_space_/', label: 'Instagram' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/teaspacedigital/', label: 'Facebook' },
     { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
   ]
 
@@ -121,7 +121,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <p className="text-gray-700 text-sm">
-                Email: <span className="font-medium text-[#0066cc]">tips@teaspace.co.ke</span>
+                Email: <span className="font-medium text-[#0066cc]">teaspaceafrica@gmail.com</span>
               </p>
             </div>
           </div>

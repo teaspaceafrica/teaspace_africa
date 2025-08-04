@@ -75,9 +75,17 @@ export default function Navbar() {
   ]
 
   const socialLinks = [
-    { icon: FaInstagram, href: '#', gradient: 'from-purple-500 to-pink-500' },
-    { icon: FaXTwitter, href: '#', gradient: 'from-blue-400 to-blue-600' },
-    { icon: FaFacebookF, href: '#', gradient: 'from-blue-600 to-blue-800' },
+    {
+      icon: FaInstagram,
+      href: 'https://www.instagram.com/tea_space_/',
+      gradient: 'from-purple-500 to-pink-500',
+    },
+    { icon: FaXTwitter, href: 'https://x.com/_teaspace', gradient: 'from-blue-400 to-blue-600' },
+    {
+      icon: FaFacebookF,
+      href: 'https://www.facebook.com/teaspacedigital/',
+      gradient: 'from-blue-600 to-blue-800',
+    },
     { icon: FaYoutube, href: '#', gradient: 'from-red-500 to-red-700' },
   ]
 

@@ -7,16 +7,11 @@ import { formatDistanceToNow } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
-  FaStar,
-  FaCrown,
   FaClock,
   FaNewspaper,
   FaCalendarAlt,
   FaUser,
   FaArrowLeft,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
   FaFilm,
   FaMusic,
 } from 'react-icons/fa'

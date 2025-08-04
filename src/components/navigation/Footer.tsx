@@ -206,11 +206,11 @@ export default function Footer({ posts }: { posts: Articles[] }) {
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3 text-gray-300">
                     <FaEnvelope className="w-4 h-4 text-[#0066cc]" />
-                    <span>teaspace@gmail.com</span>
+                    <span>teaspaceafrica@gmail.com</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <FaPhone className="w-4 h-4 text-[#0066cc]" />
-                    <span>+254 757 807097</span>
+                    <span>+254 757 000000</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <FaMapMarkerAlt className="w-4 h-4 text-[#0066cc]" />
