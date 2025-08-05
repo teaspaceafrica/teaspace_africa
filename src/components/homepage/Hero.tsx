@@ -112,7 +112,7 @@ export default function Hero({ posts = [] }: { posts?: Articles[] }) {
                       </span>
                       <div className="flex items-center space-x-1">
                         <FaClock className="w-3 h-3" />
-                        <span>{featuredBanner[0]?.readTime}</span>
+                        <span>{featuredBanner[0]?.readTime} read</span>
                       </div>
                     </div>
                     <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm rounded-full px-2 py-1 sm:px-3">

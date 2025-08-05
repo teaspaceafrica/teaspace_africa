@@ -82,6 +82,9 @@ export default function TrendingHero({ posts }: { posts: Articles[] }) {
                     <h1 className="text-white font-bold text-xl md:text-2xl lg:text-3xl leading-tight mb-3 group-hover/link:text-orange-200 transition-colors duration-300">
                       {featuredPost.title}
                     </h1>
+                    <p className="text-white/80 line-clamp-2 md:line-clamp-3">
+                      {featuredPost.excerpt}
+                    </p>
                   </Link>
 
                   {/* Reading time and category */}

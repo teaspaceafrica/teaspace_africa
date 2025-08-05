@@ -29,6 +29,17 @@ export default function GroupOne({ posts }: { posts: Articles[] }) {
     return isCelebCategory && isNotFeaturedOrTrending
   })
 
+  const trendingCeleb = posts.filter((post) => {
+    const isCeleb =
+      typeof post.category === 'object' &&
+      'name' in post.category &&
+      post.category.name === 'Celebrity'
+
+    const isTrending = post.subcategory === 'isTrending'
+
+    return isCeleb && isTrending
+  })
+
   return (
     <section className="groupone relative overflow-hidden min-h-screen py-8 sm:py-12 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -50,7 +61,7 @@ export default function GroupOne({ posts }: { posts: Articles[] }) {
 
               {/* Additional smaller cards */}
               <div className="mt-6 grid grid-cols-2 gap-3">
-                {musicArticles.slice(0, 2).map((article) => (
+                {musicArticles.slice(4, 6).map((article) => (
                   <div key={article.id} className="group cursor-pointer">
                     <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-xl bg-white transition-all duration-300 border border-[#d53020]/20 hover:border-[#d53020] hover:-translate-y-0.5">
                       <div className="relative h-24 sm:h-32 overflow-hidden">
@@ -109,7 +120,7 @@ export default function GroupOne({ posts }: { posts: Articles[] }) {
             <CategoryHeader title="Celebrity" />
 
             <div className="banner">
-              <FeaturedArticle article={celebrityArticles[1]} />
+              <FeaturedArticle article={celebrityArticles[0]} />
             </div>
 
             <div className="otherarticles">
@@ -126,7 +137,7 @@ export default function GroupOne({ posts }: { posts: Articles[] }) {
                   <h4 className="text-lg font-bold text-gray-800">Trending Now</h4>
                 </div>
                 <div className="space-y-3">
-                  {celebrityArticles.slice(0, 3).map((article, index) => (
+                  {trendingCeleb.slice(0, 3).map((article, index) => (
                     <div
                       key={article.id}
                       className="flex items-center space-x-3 group cursor-pointer"

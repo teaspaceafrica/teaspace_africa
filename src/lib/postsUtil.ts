@@ -27,9 +27,15 @@ export async function fetchAllPosts(page = 1, limit = 18) {
           : { url: '/placeholder.jpg' },
       video: post.video,
       category:
-        typeof post.category === 'object' && post.category !== null && 'name' in post.category
-          ? { name: post.category.name }
-          : { name: String(post.category) },
+        typeof post.category === 'object' && post.category !== null
+          ? {
+              name: post.category.name,
+              slug: post.category.slug,
+            }
+          : {
+              name: String(post.category),
+              slug: '',
+            },
 
       subcategory: post.subCategory,
       tags: post.tags,
@@ -127,9 +133,16 @@ export async function fetchByCategory(slug: string, page = 1, limit = 18) {
           ? { url: post.thumbnail.url }
           : { url: '/placeholder.jpg' },
       category:
-        typeof post.category === 'object' && post.category !== null && 'name' in post.category
-          ? { name: post.category.name }
-          : { name: String(post.category) },
+        typeof post.category === 'object' && post.category !== null
+          ? {
+              name: post.category.name,
+              slug: post.category.slug,
+            }
+          : {
+              name: String(post.category),
+              slug: '',
+            },
+
       subcategory: post.subCategory,
       tags: post.tags,
       author:
