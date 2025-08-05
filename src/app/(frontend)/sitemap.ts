@@ -75,11 +75,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/latest-stories`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
+      changeFrequency: 'hourly',
+      priority: 0.9,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/team`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/biosearch`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
