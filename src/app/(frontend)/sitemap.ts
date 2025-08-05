@@ -3,19 +3,23 @@ export const dynamic = 'force-dynamic'
 import type { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [postsRes] = await Promise.all([
+  const [postsRes, bioRes] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`, {
       next: { revalidate: 3600 },
     }),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/bios`),
   ])
 
-  if (!postsRes.ok) {
+  if (!postsRes.ok || !bioRes.ok) {
     throw new Error(`Failed to fetch data`)
   }
 
   const postsData = await postsRes.json()
+  const bioData = await bioRes.json()
 
   const posts: { slug: string; category: { slug: string }; updatedAt?: string }[] = postsData.docs
+
+  const bios: { slug: string }[] = bioData.docs
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     type: 'posts',
@@ -23,6 +27,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: post.updatedAt || new Date().toISOString(),
     changeFrequency: 'hourly',
     priority: 0.9,
+  }))
+
+  const bioEntries: MetadataRoute.Sitemap = bios.map((bios: { slug: string }) => ({
+    type: 'bios',
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}/biography/${bios.slug}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'weekly',
+    priority: 0.7,
   }))
 
   const uniqueCategories = Array.from(new Set(posts.map((post) => post.category.slug)))
@@ -86,5 +98,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...postEntries,
     ...categoryEntries,
+    ...bioEntries,
   ]
 }
