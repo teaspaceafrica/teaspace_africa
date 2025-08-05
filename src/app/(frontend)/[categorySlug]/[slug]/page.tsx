@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { Articles } from '@/types/types'
 import { RichText } from '@/components/RichText'
 import { fetchAllPosts, fetchRelatedPosts } from '@/lib/postsUtil'

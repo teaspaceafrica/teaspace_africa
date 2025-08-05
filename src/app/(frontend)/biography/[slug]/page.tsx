@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { Bios } from '@/types/types'
 import { RichText } from '@/components/RichText'
 import config from '@/payload.config'

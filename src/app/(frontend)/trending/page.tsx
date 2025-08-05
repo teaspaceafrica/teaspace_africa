@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import Header from '@/components/categorySection/Header'
 import { fetchAllPosts } from '@/lib/postsUtil'
 import Card from '@/components/categorySection/Card'

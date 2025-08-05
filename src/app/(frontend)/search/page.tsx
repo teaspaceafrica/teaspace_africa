@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import React from 'react'
 import SearchResults from '@/components/searchComponent/SearchResults'
 import { Suspense } from 'react'
