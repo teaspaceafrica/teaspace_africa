@@ -1,5 +1,7 @@
 User-agent: Twitterbot
 Allow: /api/media/
+Allow: /api/media/file/
+Allow: /images
 
 User-agent: *
 Disallow: /admin/
