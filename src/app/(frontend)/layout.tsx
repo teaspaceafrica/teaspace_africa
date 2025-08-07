@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import Navbar from '@/components/navigation/Navbar'
 import FooterWrapper from '@/components/Wrappers/FooterWrapper'
+import Script from 'next/script'
 
 export const metadata = {
   title: 'TeaSpace | Entertainment News, Celebrity Stories & Pop Culture',
@@ -61,6 +62,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <meta name="apple-mobile-web-app-title" content="TeaSpace" />
       </head>
       <body>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5455747285571046"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <main>
           <Navbar />
           {children}
