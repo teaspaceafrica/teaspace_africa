@@ -9,9 +9,6 @@ import Link from 'next/link'
 
 export default function Hero({ posts = [] }: { posts?: Articles[] }) {
   const featuredBanner = posts.filter((post) => post.subcategory === 'isFeatured')
-  const latestArticles = posts.filter(
-    (post) => post.subcategory !== 'isFeatured' && post.subcategory !== 'isTrending',
-  )
 
   if (featuredBanner.length === 0) {
     return (
@@ -216,7 +213,7 @@ export default function Hero({ posts = [] }: { posts?: Articles[] }) {
 
               {/* Articles List - Mobile Optimized */}
               <div className="space-y-3 sm:space-y-4">
-                {latestArticles.slice(0, 5).map((article) => (
+                {featuredBanner.slice(5, 10).map((article) => (
                   <div key={article.id} className="group cursor-pointer">
                     <Link
                       href={`/${
