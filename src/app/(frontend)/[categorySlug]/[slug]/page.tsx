@@ -71,6 +71,7 @@ export async function generateMetadata({
       images: [
         {
           url: imageUrl,
+          secureUrl: imageUrl,
           width: 1200,
           height: 630,
           alt: postTitle,
@@ -85,7 +86,7 @@ export async function generateMetadata({
       title: `${postTitle} | TeaSpace`,
       description: postExcerpt,
       images: [imageUrl],
-      site: '@_teaspace', // Update to actual Twitter/X handle
+      site: '@_teaspace',
     },
 
     alternates: {
