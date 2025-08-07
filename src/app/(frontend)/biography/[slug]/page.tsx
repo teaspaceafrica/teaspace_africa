@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: pageTitle,
       description: pageDescription,
       images: [imageUrl],
-      site: '@teaspace', // Replace with your real Twitter/X handle
+      site: '@_teaspace', // Replace with your real Twitter/X handle
     },
 
     alternates: {

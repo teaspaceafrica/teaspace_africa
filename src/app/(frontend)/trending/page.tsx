@@ -35,7 +35,7 @@ export const metadata = {
     title: 'Trending Now | TeaSpace',
     description:
       'Stay in the loop with the latest celebrity trends, viral stories, and entertainment buzz on TeaSpace.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 

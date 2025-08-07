@@ -32,7 +32,7 @@ export const metadata = {
     title: 'Search Celebrity Bios on TeaSpace',
     description:
       'Use TeaSpace to search detailed biographies, career journeys, and pop culture updates about celebrities and entertainers.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 

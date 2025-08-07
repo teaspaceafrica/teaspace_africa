@@ -30,7 +30,7 @@ export const metadata = {
     title: 'About TeaSpace',
     description:
       'Get to know TeaSpace — the entertainment news platform built on accuracy, storytelling, and integrity.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 

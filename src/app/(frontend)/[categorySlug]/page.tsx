@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ categoryS
       title: `${categoryName} | TeaSpace Entertainment`,
       description: `Latest entertainment and celebrity stories in ${categoryName}, curated by TeaSpace.`,
       images: ['/light.png'],
-      site: '@teaspace',
+      site: '@_teaspace',
     },
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}`,

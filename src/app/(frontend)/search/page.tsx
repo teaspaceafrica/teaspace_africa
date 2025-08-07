@@ -34,7 +34,7 @@ export const metadata = {
     title: 'Search TeaSpace | Entertainment, Celebs & Pop Culture',
     description:
       'Use TeaSpace search to explore articles, celebrity bios, and trending stories. Find what matters to you.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 

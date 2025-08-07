@@ -40,7 +40,7 @@ export const metadata = {
     title: 'TeaSpace | Entertainment News & Pop Culture',
     description:
       'Follow TeaSpace for accurate, engaging entertainment news and celebrity stories from around the globe.',
-    site: '@teaspace',
+    site: '@_teaspace',
     creator: '@teaspace',
     images: ['/light.png'],
   },

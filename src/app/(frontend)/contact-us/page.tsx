@@ -29,7 +29,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Contact TeaSpace',
     description: 'Questions? Tips? Feedback? Get in touch with the TeaSpace editorial team.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 

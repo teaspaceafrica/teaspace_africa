@@ -30,7 +30,7 @@ export const metadata = {
     title: 'Privacy Policy | TeaSpace',
     description:
       'Learn how TeaSpace protects your data and respects your privacy while delivering trusted entertainment news.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 

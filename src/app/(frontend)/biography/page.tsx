@@ -39,7 +39,7 @@ export const metadata = {
     title: 'Explore Celebrity Biographies | TeaSpace',
     description:
       'Browse the latest celebrity bios on TeaSpace. Learn about the personal lives, careers, and achievements of your favorite stars.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 

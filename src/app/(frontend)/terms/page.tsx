@@ -30,7 +30,7 @@ export const metadata = {
     title: 'Terms & Conditions | TeaSpace',
     description:
       'By using TeaSpace, you agree to our Terms & Conditions. Learn about content usage, disclaimers, and your rights on our platform.',
-    site: '@teaspace',
+    site: '@_teaspace',
     images: ['/light.png'],
   },
 
