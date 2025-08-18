@@ -125,7 +125,7 @@ export default function GroupOne({ posts }: { posts: Articles[] }) {
 
             <div className="otherarticles">
               <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                {celebrityArticles.map((article) => (
+                {celebrityArticles.slice(1, 3).map((article) => (
                   <ArticleCard key={article.id} article={article} />
                 ))}
               </div>

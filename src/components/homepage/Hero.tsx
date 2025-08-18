@@ -114,7 +114,21 @@ export default function Hero({ posts = [] }: { posts?: Articles[] }) {
                     </div>
                     <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm rounded-full px-2 py-1 sm:px-3">
                       <FaPlay className="w-3 h-3 text-white" />
-                      <span className="text-white text-xs font-medium">Read</span>
+                      <Link
+                        href={`/${
+                          typeof featuredBanner[0].category === 'object' &&
+                          featuredBanner[0].category !== null &&
+                          'slug' in featuredBanner[0].category
+                            ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              (featuredBanner[0].category as any).slug
+                            : typeof featuredBanner[0].category === 'string' ||
+                                typeof featuredBanner[0].category === 'number'
+                              ? featuredBanner[0].category
+                              : 'entertainment'
+                        }/${featuredBanner[0].slug}`}
+                      >
+                        <span className="text-white text-xs font-medium">Read</span>
+                      </Link>
                     </div>
                   </div>
                 </div>

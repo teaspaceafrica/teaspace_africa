@@ -80,12 +80,25 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
               </span>
               <div className="flex items-center space-x-1">
                 <FaClock className="w-4 h-4" />
-                <span>{article.readTime}</span>
+                <span>{article.readTime} read</span>
               </div>
             </div>
             <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/30 transition-colors duration-300">
               <FaPlay className="w-4 h-4 text-white" />
-              <span className="text-white text-sm font-semibold">Read More</span>
+              <Link
+                href={`/${
+                  typeof article.category === 'object' &&
+                  article.category !== null &&
+                  'slug' in article.category
+                    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      (article.category as any).slug
+                    : typeof article.category === 'string' || typeof article.category === 'number'
+                      ? article.category
+                      : 'entertainment'
+                }/${article.slug}`}
+              >
+                <span className="text-white text-sm font-semibold">Read More</span>
+              </Link>
             </div>
           </div>
         </div>
