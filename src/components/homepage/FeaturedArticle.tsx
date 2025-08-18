@@ -29,26 +29,10 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent"></div>
 
         {/* Content */}
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-          {/* Category Badge */}
-          <div className="flex items-center flex-wrap gap-2 mb-2">
-            <div className="flex items-center space-x-2 bg-[#0066cc]/90 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20 shadow-lg">
-              <span className="text-white font-semibold text-sm">
-                {' '}
-                {typeof article.category === 'object' &&
-                article.category !== null &&
-                'slug' in article.category
-                  ? article.category.slug
-                  : typeof article.category === 'string' || typeof article.category === 'number'
-                    ? article.category
-                    : 'music'}
-              </span>
-            </div>
-          </div>
-
           {/* Title */}
           <Link
             href={`/${
@@ -62,11 +46,11 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
                   : 'entertainment'
             }/${article.slug}`}
           >
-            <h1 className="text-base md:text-xl font-bold text-white mb-3 leading-tight line-clamp-3 group-hover:text-orange-200 transition-colors duration-300">
+            <h1 className="text-lg md:text-xl font-bold text-white mb-3 leading-tight line-clamp-3 group-hover:text-orange-200 transition-colors duration-300">
               {article.title}
             </h1>
           </Link>
-          <p className="hidden sm:block text-white/90 text-sm md:text-base leading-relaxed line-clamp-2">
+          <p className=" text-white/90 text-sm md:text-base leading-relaxed line-clamp-2">
             {article?.excerpt}
           </p>
 
@@ -86,7 +70,7 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
                 <span>{article.readTime} read</span>
               </div>
             </div>
-            <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/30 transition-colors duration-300">
+            <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-2 py-1 md:px-4 md:py-2 hover:bg-white/30 transition-colors duration-300">
               <FaPlay className="w-4 h-4 text-white" />
               <Link
                 href={`/${

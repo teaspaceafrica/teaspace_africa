@@ -127,7 +127,7 @@ export default function Hero({ posts = [] }: { posts?: Articles[] }) {
                               : 'entertainment'
                         }/${featuredBanner[0].slug}`}
                       >
-                        <span className="text-white text-xs font-medium">Read</span>
+                        <span className="text-white text-xs font-medium">Read More</span>
                       </Link>
                     </div>
                   </div>
