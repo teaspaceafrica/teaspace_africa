@@ -53,9 +53,7 @@ export async function generateMetadata({
     post.excerpt ||
     'Stay in the know with real-time entertainment news, celebrity updates, and pop culture highlights on TeaSpace.'
   const imageUrl =
-    typeof post?.thumbnail === 'object' && post.thumbnail?.url
-      ? `${process.env.NEXT_PUBLIC_SITE_URL}${post.thumbnail.url}`
-      : `${process.env.NEXT_PUBLIC_SITE_URL}/light.png`
+    typeof post?.thumbnail === 'object' && post.thumbnail?.url ? post.thumbnail.url : '/light.png'
 
   const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}/${slug}`
   const authorName = post.author || 'TeaSpace Editors'
