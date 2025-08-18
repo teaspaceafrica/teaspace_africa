@@ -86,7 +86,6 @@ export async function generateMetadata({
       title: `${postTitle} | TeaSpace`,
       description: postExcerpt,
       images: [imageUrl],
-      'og:image': imageUrl,
       site: '@_teaspace',
     },
 
