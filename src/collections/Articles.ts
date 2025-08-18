@@ -15,8 +15,13 @@ export const Articles: CollectionConfig = {
   },
   access: {
     create: ({ req }) => !!req.user,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     read: ({ req }) => {
+      // Allow admins to see everything
+      if (req.user && req.user.role === 'admin') {
+        return true
+      }
+
+      // Public users only see published + scheduled posts
       return {
         _status: { equals: 'published' },
         publishedAt: { less_than_equal: new Date() },
