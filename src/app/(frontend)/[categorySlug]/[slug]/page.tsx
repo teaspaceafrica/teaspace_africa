@@ -90,6 +90,18 @@ export async function generateMetadata({
       site: '@_teaspace',
     },
 
+    other: {
+      'og:title': `${postTitle} | TeaSpace`,
+      'og:description': postExcerpt,
+      'og:image': imageUrl,
+      'og:url': pageUrl,
+      'og:type': 'article',
+      'twitter:image': imageUrl,
+      'twitter:title': `${postTitle} | TeaSpace`,
+      'twitter:description': postExcerpt,
+      'twitter:card': 'summary_large_image',
+    },
+
     alternates: {
       canonical: pageUrl,
     },
