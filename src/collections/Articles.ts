@@ -5,8 +5,10 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 export const Articles: CollectionConfig = {
   slug: 'articles',
   admin: {
-    useAsTitle: 'title',
     group: 'Content Area',
+    defaultColumns: ['title', '_status', 'publishedAt'],
+    useAsTitle: 'title',
+    listSearchableFields: ['title', 'excerpt'],
   },
   versions: {
     drafts: true,
