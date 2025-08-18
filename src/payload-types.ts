@@ -246,8 +246,10 @@ export interface Article {
    * Estimated read time in minutes.
    */
   readTime: string;
+  publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -460,8 +462,10 @@ export interface ArticlesSelect<T extends boolean = true> {
       };
   author?: T;
   readTime?: T;
+  publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

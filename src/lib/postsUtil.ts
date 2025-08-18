@@ -10,6 +10,10 @@ export async function fetchAllPosts(page = 1, limit = 18) {
     depth: 3,
     limit,
     page,
+    where: {
+      _status: { equals: 'published' },
+      publishedAt: { less_than_equal: new Date().toISOString() },
+    },
   })
 
   return {
@@ -81,6 +85,8 @@ export async function fetchRelatedPosts(currentCategory: { name: string }, curre
             not_equals: currentSlug, // Exclude the current article
           },
         },
+        { _status: { equals: 'published' } },
+        { publishedAt: { less_than_equal: new Date().toISOString() } },
       ],
     },
   })
@@ -113,9 +119,11 @@ export async function fetchByCategory(slug: string, page = 1, limit = 18) {
     limit,
     page,
     where: {
-      category: {
-        equals: category.id,
-      },
+      and: [
+        { category: { equals: category.id } },
+        { _status: { equals: 'published' } },
+        { publishedAt: { less_than_equal: new Date().toISOString() } },
+      ],
     },
   })
 
@@ -173,12 +181,19 @@ export async function searchPosts(query: string, page = 1, limit = 0) {
   const res = await payload.find({
     collection: 'articles',
     where: {
-      or: [
-        { title: { like: query } },
-        { excerpt: { like: query } },
-        { 'category.name': { like: query } },
+      and: [
+        {
+          or: [
+            { title: { like: query } },
+            { excerpt: { like: query } },
+            { 'category.name': { like: query } },
+          ],
+        },
+        { _status: { equals: 'published' } },
+        { publishedAt: { less_than_equal: new Date().toISOString() } },
       ],
     },
+
     depth: 2,
     limit,
     page,

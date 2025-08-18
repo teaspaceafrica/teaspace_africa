@@ -8,9 +8,18 @@ export const Articles: CollectionConfig = {
     useAsTitle: 'title',
     group: 'Content Area',
   },
+  versions: {
+    drafts: true,
+  },
   access: {
     create: ({ req }) => !!req.user,
-    read: () => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    read: ({ req }) => {
+      return {
+        _status: { equals: 'published' },
+        publishedAt: { less_than_equal: new Date() },
+      }
+    },
     update: (args) => {
       const { req } = args
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,6 +44,7 @@ export const Articles: CollectionConfig = {
       type: 'text',
       required: true,
     },
+
     {
       name: 'slug',
       type: 'text',
@@ -121,6 +131,11 @@ export const Articles: CollectionConfig = {
       admin: {
         description: 'Estimated read time in minutes.',
       },
+    },
+    {
+      name: 'publishedAt',
+      type: 'date',
+      defaultValue: () => new Date(),
     },
   ],
   hooks: {
