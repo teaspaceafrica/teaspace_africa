@@ -136,6 +136,12 @@ export const Articles: CollectionConfig = {
       name: 'publishedAt',
       type: 'date',
       defaultValue: () => new Date(),
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime', // 👈 show both date + time
+          displayFormat: 'yyyy-MM-dd HH:mm', // 👈 customize how it looks in the admin UI
+        },
+      },
     },
   ],
   hooks: {
