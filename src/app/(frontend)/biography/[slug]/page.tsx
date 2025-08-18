@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ? bio.profileImage.url
       : '/og-teaspace.jpg'
 
-  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/bios/${slug}`
+  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/biography/${slug}`
 
   return {
     title: pageTitle,
