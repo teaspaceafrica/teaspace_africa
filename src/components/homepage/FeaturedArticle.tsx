@@ -34,7 +34,7 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
         {/* Content */}
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
           {/* Category Badge */}
-          <div className="flex items-center flex-wrap gap-2 mb-4">
+          <div className="flex items-center flex-wrap gap-2 mb-2">
             <div className="flex items-center space-x-2 bg-[#0066cc]/90 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20 shadow-lg">
               <span className="text-white font-semibold text-sm">
                 {' '}
@@ -66,6 +66,9 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
               {article.title}
             </h1>
           </Link>
+          <p className="hidden sm:block text-white/90 text-sm md:text-base leading-relaxed line-clamp-2">
+            {article?.excerpt}
+          </p>
 
           {/* Meta Info */}
           <div className="flex items-center justify-between flex-wrap gap-3">

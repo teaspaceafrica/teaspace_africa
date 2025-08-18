@@ -59,7 +59,7 @@ export default function TrendingHero({ posts }: { posts: Articles[] }) {
                 />
 
                 {/* Enhanced Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/90 to-transparent"></div>
 
                 {/* Hover Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0066cc]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -79,10 +79,10 @@ export default function TrendingHero({ posts }: { posts: Articles[] }) {
                     }/${featuredPost.slug}`}
                     className="group/link"
                   >
-                    <h1 className="text-white font-bold text-xl md:text-2xl lg:text-3xl leading-tight mb-3 group-hover/link:text-orange-200 transition-colors duration-300">
+                    <h1 className="text-white font-bold text-xl md:text-2xl lg:text-2xl leading-tight mb-3 group-hover/link:text-orange-200 transition-colors duration-300">
                       {featuredPost.title}
                     </h1>
-                    <p className="text-white/80 line-clamp-2 md:line-clamp-3">
+                    <p className="text-white/80 line-clamp-2 md:line-clamp-2">
                       {featuredPost.excerpt}
                     </p>
                   </Link>
