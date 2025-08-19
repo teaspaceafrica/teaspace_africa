@@ -109,7 +109,7 @@ export default function GroupTwo({ posts }: { posts: Articles[] }) {
 
               {/* Additional smaller cards */}
               <div className="mt-6 grid grid-cols-2 gap-3">
-                {gossipArticles.slice(0, 2).map((article) => (
+                {gossipArticles.slice(4, 6).map((article) => (
                   <div key={article.id} className="group cursor-pointer">
                     <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-xl bg-white transition-all duration-300 border border-[#d53020]/20 hover:border-[#d53020] hover:-translate-y-0.5">
                       <div className="relative h-24 sm:h-32 overflow-hidden">
