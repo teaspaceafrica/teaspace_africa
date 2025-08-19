@@ -23,7 +23,7 @@ export default function GroupTwo({ posts }: { posts: Articles[] }) {
     const isGossipCategory =
       typeof post.category === 'object' &&
       'name' in post.category &&
-      post.category.name === 'Gossip'
+      post.category.name === 'Events'
 
     const isNotFeaturedOrTrending =
       post.subcategory !== 'isFeatured' && post.subcategory !== 'isTrending'
@@ -94,7 +94,7 @@ export default function GroupTwo({ posts }: { posts: Articles[] }) {
 
           {/* Right Section - Celebrity */}
           <div className="rightsection space-y-6 text-white">
-            <CategoryHeader title="Gossip" />
+            <CategoryHeader title="Events" />
 
             <div className="banner">
               <FeaturedArticle article={gossipArticles[1]} />
