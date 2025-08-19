@@ -97,7 +97,7 @@ export default function GroupTwo({ posts }: { posts: Articles[] }) {
             <CategoryHeader title="Events" />
 
             <div className="banner">
-              <FeaturedArticle article={gossipArticles[1]} />
+              <FeaturedArticle article={gossipArticles[0]} />
             </div>
 
             <div className="otherarticles">
